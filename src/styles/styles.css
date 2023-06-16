@@ -129,7 +129,7 @@
 	gap: 10px;
 }
 
-.vote-section {
+.profile-picture-section {
 	margin-top: 5px;
 	display: flex;
 	flex-direction: column;
@@ -137,23 +137,33 @@
 	gap: 5px;
 }
 
+.profile-picture-user {
+	width: 35px;
+	border-radius: 99px;
+}
+
 .content-section {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
 	width: 100%;
+	padding: 0.7rem 0;
 }
 
-.content-section-title {
+.content__title {
 	font-size: 1.3rem;
 	text-decoration: none;
 	color: black;
 	font-weight: bold;
 }
 
-.content-section-lower {
+.content-section-bottom {
 	display: flex;
 	gap: 20px;
+}
+
+.content__username {
+	font-size: 1.3rem;
 }
 
 .content-section-user {
@@ -167,9 +177,14 @@
 	width: 25px;
 }
 
-.content-section-button-interactive {
+.content__interactive-wrapper {
 	display: flex;
-	gap: 10px;
+	gap: 20px;
+}
+
+.content__interactive__item {
+	display: flex;
+	gap: 5px;
 }
 
 .content-section-button-reply {
