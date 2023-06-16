@@ -1,33 +1,33 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncGetAllThreads } from '../states/threads/action';
-// import { asyncGetAllUsersActionCreator } from '../states/users/action';
+import { asyncGetAllUsers } from '../states/users/action';
 // import ThreadsItem from '../components/ThreadItem';
 // import { AiOutlinePlusCircle } from 'react-icons/ai';
 // import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
-	const { threads } = useSelector((states) => states);
+	const { threads, users } = useSelector((states) => states);
 	// const { authUser, threads, users, votes } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	// const navigate = useNavigate();
 
 	useEffect(() => {
-		// dispatch(asyncGetAllUsersActionCreator());
+		dispatch(asyncGetAllUsers());
 		dispatch(asyncGetAllThreads());
 	}, [dispatch]);
 
-	// const listThreads = threads.map((thread) => ({
-	// 	...thread,
-	// 	owner: users.find((user) => user.id === thread.ownerId),
-	// 	authUser: authUser.id,
-	// }));
+	const listThreads = threads.map((thread) => ({
+		...thread,
+		owner: users.find((user) => user.id === thread.ownerId),
+		// authUser: authUser.id,
+	}));
 
 	// const createNewThread = () => {
 	// 	navigate('/new');
 	// };
 
-	console.log(threads);
+	console.log(listThreads);
 
 	return (
 		<>
