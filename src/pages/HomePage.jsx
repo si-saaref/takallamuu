@@ -32,7 +32,7 @@ export default function HomePage() {
 	return (
 		<>
 			<div className='homepage container'>
-				<div className='container-inner'>
+				<div className='container-double'>
 					<div className='homepage__discussion-wrapper content-container'>
 						<h1>Explore</h1>
 						<div className='threads-list'>

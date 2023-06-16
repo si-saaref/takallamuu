@@ -50,7 +50,12 @@
 	justify-content: center;
 }
 
-.container-inner {
+.container-single {
+	width: 100%;
+	max-width: 768px;
+}
+
+.container-double {
 	width: 100%;
 	max-width: 1100px;
 	display: flex;
@@ -190,4 +195,9 @@
 .content-section-button-reply {
 	display: flex;
 	gap: 2px;
+}
+
+/* ! DETAIL PAGE */
+.detailpage__thread-wrapper {
+	background: white;
 }
