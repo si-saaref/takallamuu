@@ -9,7 +9,7 @@
 }
 
 .header-inner {
-	min-width:  768px;
+	min-width:  1100px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -50,12 +50,43 @@
 	justify-content: center;
 }
 
-.container__inner {
+.container-inner {
 	width: 100%;
-	max-width: 768px;
-	padding: 2rem;
-	background: white;
+	max-width: 1100px;
+  display: flex;
+  gap: 2rem;
 }
+
+/* ! HOMEPAGE */
+.homepage__discussion-wrapper {
+  flex-basis: 768px;
+  background: red;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.homepage__sidebar-wrapper {
+  flex: 1;
+  background: blue;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.homepage__sidebar__trending {
+  background: lightblue;
+  width: 100%;
+  flex-basis: 300px;
+}
+
+.homepage__sidebar__leaderboard {
+  background: yellow;
+  width: 100%;
+  flex: 1;
+}
+
+
+
 
 .login-form {
 	display: flex;
