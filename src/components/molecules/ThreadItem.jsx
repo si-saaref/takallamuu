@@ -1,4 +1,3 @@
-// import parse from 'html-react-parser';
 // import { isHTML } from '../utils/utlis';
 import { ImReply } from 'react-icons/im';
 import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
@@ -9,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // 	asyncNeutralVoteThreadActionCreator,
 // 	asyncUnlikeThreadActionCreator,
 // } from '../states/votes/action';
+import parse from 'html-react-parser';
 
 export default function ThreadItem({ thread }) {
 	// const { authUser } = useSelector((states) => states);
@@ -47,7 +47,7 @@ export default function ThreadItem({ thread }) {
 						<Link className='content__title' to={`/thread/${thread.id}`}>
 							{thread.title}
 						</Link>
-						{/* {isHTML(thread.body) ? parse(thread.body) : <p>{thread.body}</p>} */}
+						{isHTML(thread.body) ? parse(thread.body) : <p>{thread.body}</p>}
 					</div>
 					<div className='content-section-bottom'>
 						<div className='content__interactive-wrapper'>
@@ -76,3 +76,5 @@ export default function ThreadItem({ thread }) {
 		</>
 	);
 }
+
+const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);

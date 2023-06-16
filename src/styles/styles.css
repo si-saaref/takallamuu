@@ -147,7 +147,22 @@
 	flex-direction: column;
 	gap: 20px;
 	width: 100%;
-	padding: 0.7rem 0;
+	padding: 0.4rem 0;
+}
+
+.content__username {
+	font-size: 1.15rem;
+}
+
+.content-section-user {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.content-section-user img {
+	border-radius: 99px;
+	width: 25px;
 }
 
 .content__title {
@@ -160,21 +175,6 @@
 .content-section-bottom {
 	display: flex;
 	gap: 20px;
-}
-
-.content__username {
-	font-size: 1.3rem;
-}
-
-.content-section-user {
-	display: flex;
-	align-items: center;
-	gap: 5px;
-}
-
-.content-section-user img {
-	border-radius: 99px;
-	width: 25px;
 }
 
 .content__interactive-wrapper {
