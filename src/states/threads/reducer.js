@@ -8,5 +8,5 @@ export default function threadsReducer(state = [], action = {}) {
 		DEFAUlT: () => state,
 	};
 
-	return _action[action.type] || _action.DEFAUlT;
+	return (_action[action.type] || _action.DEFAUlT)();
 }

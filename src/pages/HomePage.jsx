@@ -1,20 +1,21 @@
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { asyncGetAllThreadsActionCreator } from '../states/threads/action';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncGetAllThreads } from '../states/threads/action';
 // import { asyncGetAllUsersActionCreator } from '../states/users/action';
 // import ThreadsItem from '../components/ThreadItem';
 // import { AiOutlinePlusCircle } from 'react-icons/ai';
 // import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
+	const { threads } = useSelector((states) => states);
 	// const { authUser, threads, users, votes } = useSelector((states) => states);
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	// const navigate = useNavigate();
 
-	// useEffect(() => {
-	// 	dispatch(asyncGetAllUsersActionCreator());
-	// 	dispatch(asyncGetAllThreadsActionCreator());
-	// }, [dispatch, votes]);
+	useEffect(() => {
+		// dispatch(asyncGetAllUsersActionCreator());
+		dispatch(asyncGetAllThreads());
+	}, [dispatch]);
 
 	// const listThreads = threads.map((thread) => ({
 	// 	...thread,
@@ -26,15 +27,17 @@ export default function HomePage() {
 	// 	navigate('/new');
 	// };
 
+	console.log(threads);
+
 	return (
 		<>
 			<div className='homepage container'>
 				<div className='container-inner'>
-          <div className="homepage__discussion-wrapper"></div>
-          <div className="homepage__sidebar-wrapper">
-            <aside className="homepage__sidebar__trending"></aside>
-            <aside className="homepage__sidebar__leaderboard"></aside>
-          </div>
+					<div className='homepage__discussion-wrapper'></div>
+					<div className='homepage__sidebar-wrapper'>
+						<aside className='homepage__sidebar__trending'></aside>
+						<aside className='homepage__sidebar__leaderboard'></aside>
+					</div>
 					{/* <div className='threads-list'>
 						{users.length !== 0 &&
 							listThreads !== 0 &&
