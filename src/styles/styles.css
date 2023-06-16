@@ -3,13 +3,13 @@
 	display: flex;
 	justify-content: center;
 	padding: 1rem;
-	background: #FFC26F;
+	background: #ffc26f;
 	position: sticky;
 	top: 0;
 }
 
 .header-inner {
-	min-width:  1100px;
+	min-width: 1100px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -53,41 +53,41 @@
 .container-inner {
 	width: 100%;
 	max-width: 1100px;
-  display: flex;
-  gap: 2rem;
+	display: flex;
+	gap: 2rem;
 }
 
 /* ! HOMEPAGE */
 .homepage__discussion-wrapper {
-  flex-basis: 768px;
-  background: red;
-  height: 100vh;
-  padding: 2rem;
+	flex-basis: 768px;
+	background: white;
+	height: 100vh;
+	padding: 2rem;
 }
 
 .homepage__sidebar-wrapper {
-  flex: 1;
-  background: blue;
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
+	flex: 1;
+	background: blue;
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
 }
 
 .homepage__sidebar__trending {
-  background: lightblue;
-  width: 100%;
-  flex-basis: 300px;
+	background: lightblue;
+	width: 100%;
+	flex-basis: 300px;
+	padding: 2rem;
 }
 
 .homepage__sidebar__leaderboard {
-  background: yellow;
-  width: 100%;
-  flex: 1;
+	background: yellow;
+	width: 100%;
+	flex: 1;
+	padding: 2rem;
 }
 
-
-
-
+/* ! LOGIN FORM */
 .login-form {
 	display: flex;
 	flex-direction: column;
@@ -108,8 +108,71 @@
 }
 
 .button-submit-form {
-	background: #FFC26F;
+	background: #ffc26f;
 	border: none;
 	padding: 10px;
 	border-radius: 5px;
+}
+
+/* ! THREAD ITEM */
+
+.threads-list {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.thread-item {
+	display: flex;
+	align-items: start;
+	gap: 10px;
+}
+
+.vote-section {
+	margin-top: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+
+.content-section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 100%;
+}
+
+.content-section-title {
+	font-size: 1.3rem;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+.content-section-lower {
+	display: flex;
+	gap: 20px;
+}
+
+.content-section-user {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.content-section-user img {
+	border-radius: 99px;
+	width: 25px;
+}
+
+.content-section-button-interactive {
+	display: flex;
+	gap: 10px;
+}
+
+.content-section-button-reply {
+	display: flex;
+	gap: 2px;
 }
