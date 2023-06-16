@@ -10,3 +10,29 @@
 	padding: 2rem;
 	background: white;
 }
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.form__content__inner > input {
+	padding: 5px 10px;
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+.button-submit-form {
+	background: lightblue;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+}
