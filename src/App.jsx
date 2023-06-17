@@ -1,15 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import './styles/styles.css';
-import LoginPage from './pages/Login.Page';
-import Header from './components/organisms/Header';
-import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/Login.Page';
+import './styles/styles.css';
 
 function App() {
 	return (
 		<>
-			<Header />
 			<main>
 				<Routes>
 					<Route path='/' element={<HomePage />} />

@@ -8,7 +8,8 @@
 	top: 0;
 }
 
-.header-inner {
+.header-inner--large,
+.header-inner--medium {
 	min-width: 1100px;
 	display: flex;
 	justify-content: space-between;
@@ -16,13 +17,33 @@
 	padding: 0 1rem;
 }
 
+.header-inner--medium {
+	min-width: 768px !important;
+}
+
 .header-menu {
 	display: flex;
 	gap: 20px;
 }
 
-.header-inner svg {
+.header svg {
 	font-size: 1.5rem;
+}
+
+.header__interactive-wrapper {
+	display: flex;
+	gap: 10px;
+}
+
+.header__button {
+	background: transparent;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+
+.header__button.button__register {
+	background: #8b6b61;
+	color: white;
 }
 
 /* ! FOOTER */

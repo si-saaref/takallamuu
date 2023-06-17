@@ -7,6 +7,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import ThreadComment from '../components/molecules/ThreadComment';
 import FormComment from '../components/molecules/FormComment';
 import { asyncAddCommentThread } from '../states/comments/action';
+import Header from '../components/organisms/Header';
 
 export default function DetailPage() {
 	const { id } = useParams();
@@ -33,26 +34,29 @@ export default function DetailPage() {
 
 	return (
 		<>
-			<div className='homepage container'>
-				<div className='container-single'>
-					<div className='detailpage__thread-wrapper'>
-						<div className='detailpage__info-wrapper'>
-							<AiOutlineArrowLeft onClick={handleBackPage} />
-							<p>Thread</p>
-						</div>
-						<ThreadItem thread={detailThread} />
-						<div className='threads-comments'>
-							<FormComment replyTo={detailThread.owner.name} onReplyThread={onReplyThread} />
-							<h1>
-								Comments <span>({detailThread.comments.length})</span>
-							</h1>
-							{detailThread.comments.map((thread) => (
-								<ThreadComment key={thread.id} thread={thread} threadId={id} />
-							))}
+			<Header />
+			<main>
+				<div className='detailpage container'>
+					<div className='container-single'>
+						<div className='detailpage__thread-wrapper'>
+							<div className='detailpage__info-wrapper'>
+								<AiOutlineArrowLeft onClick={handleBackPage} />
+								<p>Thread</p>
+							</div>
+							<ThreadItem thread={detailThread} />
+							<div className='threads-comments'>
+								<FormComment replyTo={detailThread.owner.name} onReplyThread={onReplyThread} />
+								<h1>
+									Comments <span>({detailThread.comments.length})</span>
+								</h1>
+								{detailThread.comments.map((thread) => (
+									<ThreadComment key={thread.id} thread={thread} threadId={id} />
+								))}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</main>
 		</>
 	);
 }
