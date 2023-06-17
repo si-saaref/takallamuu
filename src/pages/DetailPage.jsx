@@ -6,22 +6,22 @@ import ThreadItem from '../components/molecules/ThreadItem';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import ThreadComment from '../components/molecules/ThreadComment';
 import FormComment from '../components/molecules/FormComment';
-// import { asyncCreateCommentThreadActionCreator } from '../states/comment/action';
+import { asyncAddCommentThread } from '../states/comments/action';
 
 export default function DetailPage() {
 	const { id } = useParams();
-	const { detailThread } = useSelector((states) => states);
+	const { detailThread, comment } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(asyncGetDetailThread({ idThread: id }));
-	}, [id, dispatch]);
+	}, [id, dispatch, comment]);
 
-	// const onSubmitComment = ({ content, setValueComment }) => {
-	// 	dispatch(asyncCreateCommentThreadActionCreator({ threadId: id, content }));
-	// 	setValueComment('');
-	// };
+	const onReplyThread = ({ content, setValueComment }) => {
+		dispatch(asyncAddCommentThread({ threadId: id, content }));
+		setValueComment('');
+	};
 
 	const handleBackPage = () => {
 		navigate('/');
@@ -42,7 +42,7 @@ export default function DetailPage() {
 						</div>
 						<ThreadItem thread={detailThread} />
 						<div className='threads-comments'>
-							<FormComment />
+							<FormComment replyTo={detailThread.owner.name} onReplyThread={onReplyThread} />
 							<h1>
 								Comments <span>({detailThread.comments.length})</span>
 							</h1>

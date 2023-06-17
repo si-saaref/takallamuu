@@ -218,8 +218,8 @@
 	gap: 15px;
 }
 
-.threads-replies > h1 {
-	font-size: 1.4rem;
+.threads-comments > h1 {
+	font-size: 1.2rem;
 }
 
 .thread-comment {
@@ -272,6 +272,7 @@
 .form-comment h1 {
 	font-size: 0.9rem;
 	color: rgb(151, 151, 151);
+	font-weight: 100;
 }
 
 .form-comment form {
