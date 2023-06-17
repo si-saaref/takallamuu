@@ -7,7 +7,7 @@
 :root {
 	--accent-color: #00796b;
 	--foreground-color: #0f1419;
-	--background-color: rgb(249, 224, 187,  .3);
+	--background-color: rgb(249, 224, 187, 0.3);
 	--gray-dark-color: #66757f;
 	--gray-light-color: #edeff1;
 }
@@ -17,4 +17,7 @@ body {
 	color: var(--foreground-color);
 	background-color: var(--background-color);
 	/* overflow-x: hidden; */
+}
+svg {
+	cursor: pointer;
 }

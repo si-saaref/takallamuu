@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncGetDetailThread } from '../states/detailThread/action';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ThreadItem from '../components/molecules/ThreadItem';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 // import ThreadReply from '../components/ThreadReply';
@@ -12,6 +12,7 @@ export default function DetailPage() {
 	const { id } = useParams();
 	const { detailThread } = useSelector((states) => states);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(asyncGetDetailThread({ idThread: id }));
@@ -21,6 +22,10 @@ export default function DetailPage() {
 	// 	dispatch(asyncCreateCommentThreadActionCreator({ threadId: id, content }));
 	// 	setValueComment('');
 	// };
+
+	const handleBackPage = () => {
+		navigate('/');
+	};
 
 	if (Object.keys(detailThread).length === 0) {
 		return null;
@@ -32,7 +37,7 @@ export default function DetailPage() {
 				<div className='container-single'>
 					<div className='detailpage__thread-wrapper'>
 						<div className='detailpage__info-wrapper'>
-							<AiOutlineArrowLeft />
+							<AiOutlineArrowLeft onClick={handleBackPage} />
 							<p>Thread</p>
 						</div>
 						<ThreadItem thread={detailThread} />
