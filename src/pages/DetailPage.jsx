@@ -4,7 +4,7 @@ import { asyncGetDetailThread } from '../states/detailThread/action';
 import { useNavigate, useParams } from 'react-router-dom';
 import ThreadItem from '../components/molecules/ThreadItem';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-// import ThreadReply from '../components/ThreadReply';
+import ThreadComment from '../components/molecules/ThreadComment';
 // import ThreadReplyForm from '../components/ThreadReplyForm';
 // import { asyncCreateCommentThreadActionCreator } from '../states/comment/action';
 
@@ -31,6 +31,8 @@ export default function DetailPage() {
 		return null;
 	}
 
+	console.log(detailThread);
+
 	return (
 		<>
 			<div className='homepage container'>
@@ -41,15 +43,15 @@ export default function DetailPage() {
 							<p>Thread</p>
 						</div>
 						<ThreadItem thread={detailThread} />
-						{/* <div className='threads-replies'>
-							<ThreadReplyForm onSubmitComment={onSubmitComment} />
+						<div className='threads-comments'>
+							{/* <ThreadReplyForm onSubmitComment={onSubmitComment} /> */}
 							<h1>
 								Komentar <span>({detailThread.comments.length})</span>
 							</h1>
 							{detailThread.comments.map((thread) => (
-								<ThreadReply key={thread.id} thread={thread} threadId={id} />
+								<ThreadComment key={thread.id} thread={thread} threadId={id} />
 							))}
-						</div> */}
+						</div>
 					</div>
 				</div>
 			</div>

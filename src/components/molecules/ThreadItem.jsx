@@ -1,6 +1,7 @@
 // import { isHTML } from '../utils/utlis';
 import { ImReply } from 'react-icons/im';
 import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
+import { FaLink } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
 // import {
@@ -34,40 +35,43 @@ export default function ThreadItem({ thread }) {
 	return (
 		<>
 			<div className='thread-item'>
-				<div className='profile-picture-section'>
+				<div className='thread__profile-picture-section'>
 					<img
 						src={thread.owner.avatar}
 						alt={`${thread.owner.name}-avatar`}
-						className='profile-picture-user'
+						className='thread__profile-picture-user'
 					/>
 				</div>
-				<div className='content-section'>
-					<div className='content-section-top'>
-						<p className='content__username'>{thread.owner.name}</p>
-						<Link className='content__title' to={`/thread/${thread.id}`}>
+				<div className='thread__content-section'>
+					<div className='thread__content-section-top'>
+						<p className='thread__content__username'>{thread.owner.name}</p>
+						<Link className='thread__content__title' to={`/thread/${thread.id}`}>
 							{thread.title}
 						</Link>
 						{isHTML(thread.body) ? parse(thread.body) : <p>{thread.body}</p>}
 					</div>
-					<div className='content-section-bottom'>
-						<div className='content__interactive-wrapper'>
-							<div className='content__interactive__item'>
+					<div className='thread__content-section-bottom'>
+						<div className='thread__content__interactive-wrapper'>
+							<div className='thread__content__interactive__item'>
 								<BsSuitHeartFill
 								// onClick={() => likeThread(thread.id)}
 								// className={`vote-button ${thread.upVotesBy.includes(authUser.id) && 'active-vote'}`}
 								/>
 								<p>{thread.upVotesBy.length}</p>
 							</div>
-							<div className='content__interactive__item'>
+							<div className='thread__content__interactive__item'>
 								<BsHeartbreakFill
 								// onClick={() => unlikeThread(thread.id)}
 								// className={`vote-button ${thread.downVotesBy.includes(authUser.id) && 'active-vote'}`}
 								/>
 								<p>{thread.downVotesBy.length}</p>
 							</div>
-							<div className='content__interactive__item'>
+							<div className='thread__content__interactive__item'>
 								<ImReply onClick={() => navigate(`/thread/${thread.id}`)} />
 								<p>{thread.totalComments ?? thread.comments.length}</p>
+							</div>
+							<div className='thread__content__interactive__item'>
+								<FaLink />
 							</div>
 						</div>
 					</div>

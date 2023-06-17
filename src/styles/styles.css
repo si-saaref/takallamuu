@@ -134,7 +134,7 @@
 	gap: 10px;
 }
 
-.profile-picture-section {
+.thread__profile-picture-section {
 	margin-top: 5px;
 	display: flex;
 	flex-direction: column;
@@ -142,12 +142,12 @@
 	gap: 5px;
 }
 
-.profile-picture-user {
+.thread__profile-picture-user {
 	width: 35px;
 	border-radius: 99px;
 }
 
-.content-section {
+.thread__content-section {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
@@ -155,44 +155,33 @@
 	padding: 0.4rem 0;
 }
 
-.content__username {
+.thread__content__username {
 	font-size: 1.15rem;
 }
 
-.content-section-user {
-	display: flex;
-	align-items: center;
-	gap: 5px;
-}
-
-.content-section-user img {
-	border-radius: 99px;
-	width: 25px;
-}
-
-.content__title {
+.thread__content__title {
 	font-size: 1.3rem;
 	text-decoration: none;
 	color: black;
 	font-weight: bold;
 }
 
-.content-section-bottom {
+.thread__content-section-bottom {
 	display: flex;
 	gap: 20px;
 }
 
-.content__interactive-wrapper {
+.thread__content__interactive-wrapper {
 	display: flex;
-	gap: 20px;
+	gap: 30px;
 }
 
-.content__interactive__item {
+.thread__content__interactive__item {
 	display: flex;
 	gap: 5px;
 }
 
-.content-section-button-reply {
+.thread__content-section-button-reply {
 	display: flex;
 	gap: 2px;
 }
@@ -217,4 +206,58 @@
 .detailpage__info-wrapper svg {
 	font-size: 1.3rem;
 	font-weight: bold;
+}
+
+/* ! THREAD COMMENT */
+
+.threads-comments {
+	margin-top: 30px;
+	margin-left: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.threads-replies > h1 {
+	font-size: 1.4rem;
+}
+
+.thread-comment {
+	display: flex;
+	gap: 10px;
+	border-bottom: 2px solid rgb(221, 221, 221);
+	padding: 0.8rem 0;
+}
+
+.comment__profile-picture img {
+	width: 30px;
+	border-radius: 99px;
+}
+
+.comment__content {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.comment__content-section-top {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.comment__content-section-top h1 {
+	font-size: 1.1rem;
+	font-weight: normal;
+}
+
+.comment__content-section-bottom {
+	display: flex;
+	gap: 20px;
+}
+
+.comment__like,
+.comment__dislike {
+	display: flex;
+	gap: 4px;
 }
