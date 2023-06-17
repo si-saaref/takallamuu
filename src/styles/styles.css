@@ -261,3 +261,44 @@
 	display: flex;
 	gap: 4px;
 }
+
+/* ! FORM COMMENT */
+.form-comment {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.form-comment h1 {
+	font-size: 0.9rem;
+	color: rgb(151, 151, 151);
+}
+
+.form-comment form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.form-comment textarea {
+	padding: 0.5rem;
+	resize: none;
+	width: 100%;
+	height: fit-content;
+}
+
+.form-comment textarea:focus {
+	outline: 1px solid lightgrey;
+}
+
+.form-comment button {
+	padding: 0.7rem 1rem;
+	background: lightblue;
+	border: none;
+	border-radius: 1px;
+	font-weight: bolder;
+	font-size: 1rem;
+	cursor: pointer;
+	align-self: end;
+	border-radius: 20px;
+}
