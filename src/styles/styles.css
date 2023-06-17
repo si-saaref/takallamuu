@@ -200,4 +200,21 @@
 /* ! DETAIL PAGE */
 .detailpage__thread-wrapper {
 	background: white;
+	min-height: 100vh;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.detailpage__info-wrapper {
+	display: flex;
+	gap: 15px;
+	padding: 0 0.3rem;
+}
+
+.detailpage__info-wrapper p,
+.detailpage__info-wrapper svg {
+	font-size: 1.3rem;
+	font-weight: bold;
 }
