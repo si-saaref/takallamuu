@@ -177,7 +177,7 @@ const apiServices = (() => {
 		return thread;
 	}
 
-	async function createComment({ content, threadId }) {
+	async function addComment({ content, threadId }) {
 		const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments`, {
 			method: 'POST',
 			headers: {
@@ -355,7 +355,7 @@ const apiServices = (() => {
 		getAllThreads,
 		createThread,
 		getThreadDetail,
-		createComment,
+		addComment,
 		likeThread,
 		unlikeThread,
 		neutralizeVoteThread,
