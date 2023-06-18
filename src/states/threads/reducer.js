@@ -5,6 +5,9 @@ export default function threadsReducer(state = [], action = {}) {
 		[actionType.GET_ALL_THREADS]: () => {
 			return action.payload.threads;
 		},
+		[actionType.ADD_NEW_THREAD]: () => {
+			return [action.payload.thread, ...state];
+		},
 		DEFAUlT: () => state,
 	};
 

@@ -24,3 +24,23 @@ export const asyncGetAllThreads = () => {
 		}
 	};
 };
+
+export const createNewThread = (thread) => {
+	return {
+		type: actionType.ADD_NEW_THREAD,
+		payload: {
+			thread,
+		},
+	};
+};
+
+export const asyncCreateNewThread = ({ title, body, category }) => {
+	return async (dispatch) => {
+		try {
+			const thread = await apiServices.createThread({ title, body, category });
+			dispatch(createNewThread(thread));
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+};
