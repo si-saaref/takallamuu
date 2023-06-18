@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ThreadItem from '../components/molecules/ThreadItem';
 import { asyncGetAllThreads } from '../states/threads/action';
 import { asyncGetAllUsers } from '../states/users/action';
-import ThreadItem from '../components/molecules/ThreadItem';
 // import { AiOutlinePlusCircle } from 'react-icons/ai';
 // import { useNavigate } from 'react-router-dom';
 import Header from '../components/organisms/Header';
+import NewThreadModal from '../components/organisms/NewThreadModal';
 
 export default function HomePage() {
 	const { threads, users } = useSelector((states) => states);
+	const [isOpenModalThread, setIsOpenModalThread] = useState(false);
 	// const { authUser, threads, users, votes } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	// const navigate = useNavigate();
@@ -37,7 +39,19 @@ export default function HomePage() {
 				<div className='homepage container'>
 					<div className='container-double'>
 						<div className='homepage__discussion-wrapper content-container'>
-							<h1>Explore</h1>
+							<div className='homepage__header'>
+								<h1>Explore</h1>
+								<button
+									className='homepage__button-add-thread'
+									onClick={() => setIsOpenModalThread(true)}
+								>
+									Kallim
+								</button>
+								<NewThreadModal
+									isOpenModal={isOpenModalThread}
+									setOpenModal={setIsOpenModalThread}
+								/>
+							</div>
 							<div className='threads-list'>
 								{users.length !== 0 &&
 									listThreads !== 0 &&
@@ -53,7 +67,6 @@ export default function HomePage() {
 							</aside>
 						</div>
 					</div>
-					{/* <AiOutlinePlusCircle className='button-add-new-thread' onClick={createNewThread} /> */}
 				</div>
 			</main>
 		</>

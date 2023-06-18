@@ -8,14 +8,14 @@ import { useEffect } from 'react';
 import { asyncSetIsPreload } from './states/isPreload/action';
 
 function App() {
-	const { isPreload } = useSelector((states) => states);
+	const { isPreload, authUser } = useSelector((states) => states);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(asyncSetIsPreload());
 	}, [dispatch]);
 
-	if (isPreload) {
+	if (isPreload && !authUser) {
 		return null;
 	}
 

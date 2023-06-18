@@ -6,6 +6,7 @@
 	background: #ffc26f;
 	position: sticky;
 	top: 0;
+	z-index: 99;
 }
 
 .header-inner--large,
@@ -95,6 +96,7 @@
 	background: white;
 	min-height: 100vh;
 	padding: 2rem;
+	position: relative;
 }
 
 .homepage__sidebar-wrapper {
@@ -117,6 +119,23 @@
 	width: 100%;
 	flex-basis: 50vh;
 	padding: 2rem;
+}
+
+.homepage__header {
+	position: sticky;
+	top: 6rem;
+	background: white;
+	backdrop-filter: blur(10px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.homepage__button-add-thread {
+	padding: 0.5rem 1rem;
+	border-radius: 20px;
+	font-weight: bold;
+	background: rgb(255, 194, 111, 0.5);
 }
 
 /* ! THREAD ITEM */
@@ -310,6 +329,7 @@
 	inset: 0px;
 	background-color: rgba(0, 0, 0, 0.25);
 	backdrop-filter: blur(5px);
+	z-index: 9999;
 }
 
 .modal {
@@ -375,4 +395,11 @@
 	border: none;
 	padding: 10px;
 	border-radius: 5px;
+}
+
+/* ! NEW THREAD */
+.modal-new-thread textarea {
+	padding: 0.5rem 0.8rem;
+	border-radius: 5px;
+	border: 1px solid grey;
 }
