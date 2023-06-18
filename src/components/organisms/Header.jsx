@@ -1,13 +1,19 @@
 import { RiLogoutBoxLine } from 'react-icons/ri';
 import LoginModal from './LoginModal';
 import { useState } from 'react';
+import RegisterModal from './RegisterModal';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
+	const [isOpenModalRegister, setIsOpenModalRegister] = useState(false);
 	const { authUser = false } = {};
 
 	const handleOpenLoginModal = () => {
 		setIsOpenModalLogin(true);
+	};
+
+	const handleOpenRegisterModal = () => {
+		setIsOpenModalRegister(true);
 	};
 
 	return (
@@ -23,7 +29,18 @@ export default function Header({ isLarege = false }) {
 								</button>
 								<LoginModal isOpenModal={isOpenModalLogin} setOpenModal={setIsOpenModalLogin} />
 							</div>
-							<button className='header__button button__register'>Register</button>
+							<div className=''>
+								<button
+									className='header__button button__register'
+									onClick={handleOpenRegisterModal}
+								>
+									Register
+								</button>
+								<RegisterModal
+									isOpenModal={isOpenModalRegister}
+									setOpenModal={setIsOpenModalRegister}
+								/>
+							</div>
 						</div>
 					) : (
 						<RiLogoutBoxLine />
