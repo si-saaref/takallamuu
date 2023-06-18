@@ -4,12 +4,14 @@ import { useState } from 'react';
 import RegisterModal from './RegisterModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../states/authUser/action';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
 	const [isOpenModalRegister, setIsOpenModalRegister] = useState(false);
 	const { authUser } = useSelector((states) => states);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleOpenLoginModal = () => {
 		setIsOpenModalLogin(true);
@@ -21,10 +23,12 @@ export default function Header({ isLarege = false }) {
 
 	const handleRegister = ({ email, name, password }) => {
 		dispatch(asyncSetRegister({ email, name, password }));
+		setIsOpenModalRegister(false);
 	};
 
 	const handleLogin = ({ email, password }) => {
 		dispatch(asyncSetLogin({ email, password }));
+		setIsOpenModalLogin(false);
 	};
 
 	const handleLogout = () => {
@@ -35,7 +39,9 @@ export default function Header({ isLarege = false }) {
 		<>
 			<header className='header'>
 				<div className={`${isLarege ? 'header-inner--large' : 'header-inner--medium'}`}>
-					<h1>Takallamuu</h1>
+					<h1 className='header__logo' onClick={() => navigate('/')}>
+						Takallamuu
+					</h1>
 					{!authUser ? (
 						<div className='header__interactive-wrapper'>
 							<div className=''>

@@ -21,6 +21,10 @@
 	min-width: 768px !important;
 }
 
+.header__logo {
+	cursor: pointer;
+}
+
 .header-menu {
 	display: flex;
 	gap: 20px;
@@ -87,6 +91,7 @@
 /* ! HOMEPAGE */
 .homepage__discussion-wrapper {
 	flex-basis: 768px;
+	max-width: 768px;
 	background: white;
 	min-height: 100vh;
 	padding: 2rem;
