@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // 	asyncUnlikeThreadActionCreator,
 // } from '../states/votes/action';
 import parse from 'html-react-parser';
+import { decodeHTMLEntities, isHTML } from '../../utlis/utils';
 
 export default function ThreadItem({ thread }) {
 	// const { authUser } = useSelector((states) => states);
@@ -32,6 +33,8 @@ export default function ThreadItem({ thread }) {
 	// 	}
 	// };
 
+	const contentThread = decodeHTMLEntities(thread.body);
+
 	return (
 		<>
 			<div className='thread-item'>
@@ -48,7 +51,7 @@ export default function ThreadItem({ thread }) {
 						<Link className='thread__content__title' to={`/thread/${thread.id}`}>
 							{thread.title}
 						</Link>
-						{isHTML(thread.body) ? parse(thread.body) : <p>{thread.body}</p>}
+						{isHTML(contentThread) ? parse(contentThread) : <p>{contentThread}</p>}
 					</div>
 					<div className='thread__content-section-bottom'>
 						<div className='thread__content__interactive-wrapper'>
@@ -80,5 +83,3 @@ export default function ThreadItem({ thread }) {
 		</>
 	);
 }
-
-const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
