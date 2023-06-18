@@ -1,6 +1,6 @@
 import parser from 'html-react-parser';
 import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import {
 // 	asyncLikeCommentdActionCreator,
 // 	asyncNeutralVoteCommentActionCreator,
@@ -8,7 +8,7 @@ import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
 // } from '../states/votes/action';
 
 export default function ThreadComment({ thread }) {
-	// const { authUser } = useSelector((states) => states);
+	const { authUser } = useSelector((states) => states);
 	// const dispatch = useDispatch();
 
 	// const likeComment = (commentId) => {
@@ -39,17 +39,21 @@ export default function ThreadComment({ thread }) {
 						<h1>{parser(thread.content)}</h1>
 					</div>
 					<div className='comment__content-section-bottom'>
-						<div className='comment__like'>
+						<div className='comment__content__interactive__item'>
 							<BsSuitHeartFill
-							// onClick={() => likeComment(thread.id)}
-							// className={`vote-button ${thread.upVotesBy.includes(authUser.id) && 'active-vote'}`}
+								// onClick={() => likeComment(thread.id)}
+								className={`button__interactive-item ${
+									thread.upVotesBy.includes(authUser.id) && 'active-vote'
+								}`}
 							/>
 							<p>{thread.upVotesBy.length}</p>
 						</div>
-						<div className='comment__dislike'>
+						<div className='comment__content__interactive__item'>
 							<BsHeartbreakFill
-							// onClick={() => unlikeComment(thread.id)}
-							// className={`vote-button ${thread.downVotesBy.includes(authUser.id) && 'active-vote'}`}
+								// onClick={() => unlikeComment(thread.id)}
+								className={`button__interactive-item ${
+									thread.downVotesBy.includes(authUser.id) && 'active-vote'
+								}`}
 							/>
 							<p>{thread.downVotesBy.length}</p>
 						</div>

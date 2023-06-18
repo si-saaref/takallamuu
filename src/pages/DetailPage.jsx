@@ -11,7 +11,7 @@ import Header from '../components/organisms/Header';
 
 export default function DetailPage() {
 	const { id } = useParams();
-	const { detailThread, comment } = useSelector((states) => states);
+	const { detailThread, comment, authUser } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -45,7 +45,9 @@ export default function DetailPage() {
 							</div>
 							<ThreadItem thread={detailThread} />
 							<div className='threads-comments'>
-								<FormComment replyTo={detailThread.owner.name} onReplyThread={onReplyThread} />
+								{authUser && (
+									<FormComment replyTo={detailThread.owner.name} onReplyThread={onReplyThread} />
+								)}
 								<h1>
 									Comments <span>({detailThread.comments.length})</span>
 								</h1>

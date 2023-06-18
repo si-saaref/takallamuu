@@ -11,9 +11,10 @@ import { Link, useNavigate } from 'react-router-dom';
 // } from '../states/votes/action';
 import parse from 'html-react-parser';
 import { decodeHTMLEntities, isHTML } from '../../utlis/utils';
+import { useSelector } from 'react-redux';
 
 export default function ThreadItem({ thread }) {
-	// const { authUser } = useSelector((states) => states);
+	const { authUser } = useSelector((states) => states);
 	const navigate = useNavigate();
 	// const dispatch = useDispatch();
 
@@ -57,15 +58,19 @@ export default function ThreadItem({ thread }) {
 						<div className='thread__content__interactive-wrapper'>
 							<div className='thread__content__interactive__item'>
 								<BsSuitHeartFill
-								// onClick={() => likeThread(thread.id)}
-								// className={`vote-button ${thread.upVotesBy.includes(authUser.id) && 'active-vote'}`}
+									// onClick={() => likeThread(thread.id)}
+									className={`button__interactive-item ${
+										thread.upVotesBy.includes(authUser.id) && 'active-vote'
+									}`}
 								/>
 								<p>{thread.upVotesBy.length}</p>
 							</div>
 							<div className='thread__content__interactive__item'>
 								<BsHeartbreakFill
-								// onClick={() => unlikeThread(thread.id)}
-								// className={`vote-button ${thread.downVotesBy.includes(authUser.id) && 'active-vote'}`}
+									// onClick={() => unlikeThread(thread.id)}
+									className={`button__interactive-item ${
+										thread.downVotesBy.includes(authUser.id) && 'active-vote'
+									}`}
 								/>
 								<p>{thread.downVotesBy.length}</p>
 							</div>

@@ -148,7 +148,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 50px;
-	padding: 0 2rem;
+	padding: 0 2rem 2rem 2rem;
 }
 
 .thread-item {
@@ -279,8 +279,7 @@
 	gap: 20px;
 }
 
-.comment__like,
-.comment__dislike {
+.comment__content__interactive__item {
 	display: flex;
 	gap: 4px;
 }
@@ -406,4 +405,13 @@
 	padding: 0.5rem 0.8rem;
 	border-radius: 5px;
 	border: 1px solid grey;
+}
+
+/* ! BUTTON INTERACTIVE THREAD AND COMMENT */
+.button__interactive-item {
+	color: lightgrey;
+}
+
+.button__interactive-item.active-vote {
+	color: black;
 }
