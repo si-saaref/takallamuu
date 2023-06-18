@@ -3,6 +3,7 @@ import threadsReducer from './threads/reducer';
 import userReducer from './users/reducer';
 import detailThreadReducer from './detailThread/reducer';
 import commentThreadReducer from './comments/reducer';
+import authUserReducer from './authUser/reducer';
 
 export const store = configureStore({
 	reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
 		users: userReducer,
 		detailThread: detailThreadReducer,
 		comment: commentThreadReducer,
+		authUser: authUserReducer,
 	},
 });
