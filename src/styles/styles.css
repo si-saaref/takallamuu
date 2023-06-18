@@ -95,7 +95,7 @@
 	max-width: 768px;
 	background: white;
 	min-height: 100vh;
-	padding: 2rem;
+	/* padding: 2rem; */
 	position: relative;
 }
 
@@ -123,11 +123,14 @@
 
 .homepage__header {
 	position: sticky;
-	top: 6rem;
+	top: 4.3rem;
+	left: 0;
+	right: 0;
 	background: white;
-	backdrop-filter: blur(10px);
+	/* backdrop-filter: blur(8px); */
 	display: flex;
 	align-items: center;
+	padding: 1rem 2rem;
 	justify-content: space-between;
 }
 
@@ -145,6 +148,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 50px;
+	padding: 0 2rem;
 }
 
 .thread-item {
