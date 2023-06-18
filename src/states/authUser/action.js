@@ -28,7 +28,7 @@ export const asyncSetRegister = ({ name, email, password }) => {
 
 export const setLogin = (authUser) => {
 	return {
-		type: actionType.SIGN_IN,
+		type: actionType.LOGIN,
 		payload: {
 			authUser,
 		},

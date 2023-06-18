@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
 import Modal from '../molecules/Modal';
 
-export default function LoginModal({ onSignIn, isOpenModal = false, setOpenModal }) {
+export default function LoginModal({ handleLogin, isOpenModal = false, setOpenModal }) {
 	const [email, handleChangeEmail] = useInput('');
 	const [password, handleChangePassword] = useInput('');
 
@@ -36,7 +36,7 @@ export default function LoginModal({ onSignIn, isOpenModal = false, setOpenModal
 						<button
 							type='button'
 							className='form__button button-login'
-							onClick={() => onSignIn({ email, password })}
+							onClick={() => handleLogin({ email, password })}
 						>
 							Login
 						</button>

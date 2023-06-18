@@ -3,7 +3,7 @@ import LoginModal from './LoginModal';
 import { useState } from 'react';
 import RegisterModal from './RegisterModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncSetRegister } from '../../states/authUser/action';
+import { asyncSetLogin, asyncSetRegister } from '../../states/authUser/action';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
@@ -23,6 +23,10 @@ export default function Header({ isLarege = false }) {
 		dispatch(asyncSetRegister({ email, name, password }));
 	};
 
+	const handleLogin = ({ email, password }) => {
+		dispatch(asyncSetLogin({ email, password }));
+	};
+
 	return (
 		<>
 			<header className='header'>
@@ -34,7 +38,11 @@ export default function Header({ isLarege = false }) {
 								<button className='header__button' onClick={handleOpenLoginModal}>
 									Login
 								</button>
-								<LoginModal isOpenModal={isOpenModalLogin} setOpenModal={setIsOpenModalLogin} />
+								<LoginModal
+									isOpenModal={isOpenModalLogin}
+									setOpenModal={setIsOpenModalLogin}
+									handleLogin={handleLogin}
+								/>
 							</div>
 							<div className=''>
 								<button
