@@ -25,7 +25,7 @@ export const asyncGetAllThreads = () => {
 	};
 };
 
-export const createNewThread = (thread) => {
+export const addNewThread = (thread) => {
 	return {
 		type: actionType.ADD_NEW_THREAD,
 		payload: {
@@ -34,11 +34,11 @@ export const createNewThread = (thread) => {
 	};
 };
 
-export const asyncCreateNewThread = ({ title, body, category }) => {
+export const asyncAddNewThread = ({ title, body, category }) => {
 	return async (dispatch) => {
 		try {
 			const thread = await apiServices.createThread({ title, body, category });
-			dispatch(createNewThread(thread));
+			dispatch(addNewThread(thread));
 		} catch (error) {
 			console.log(error.message);
 		}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ThreadItem from '../components/molecules/ThreadItem';
-import { asyncGetAllThreads } from '../states/threads/action';
+import { asyncAddNewThread, asyncGetAllThreads } from '../states/threads/action';
 import { asyncGetAllUsers } from '../states/users/action';
 // import { AiOutlinePlusCircle } from 'react-icons/ai';
 // import { useNavigate } from 'react-router-dom';
@@ -26,9 +26,16 @@ export default function HomePage() {
 		// authUser: authUser.id,
 	}));
 
-	// const createNewThread = () => {
-	// 	navigate('/new');
-	// };
+	const handleAddThread = ({ title, content, tag }) => {
+		dispatch(
+			asyncAddNewThread({
+				title,
+				category: tag,
+				body: content,
+			})
+		);
+		setIsOpenModalThread(false);
+	};
 
 	console.log(listThreads);
 
@@ -50,6 +57,7 @@ export default function HomePage() {
 								<NewThreadModal
 									isOpenModal={isOpenModalThread}
 									setOpenModal={setIsOpenModalThread}
+									handleAddThread={handleAddThread}
 								/>
 							</div>
 							<div className='threads-list'>
