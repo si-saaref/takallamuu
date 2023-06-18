@@ -36,9 +36,10 @@
 }
 
 .header__button {
-	background: transparent;
+	background: rgba(255, 251, 243, 0.702);
 	padding: 0.5rem 1rem;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 .header__button.button__register {
@@ -364,7 +365,7 @@
 	border: 1px solid black;
 }
 
-.button-submit-form {
+.form__button {
 	background: #ffc26f;
 	border: none;
 	padding: 10px;

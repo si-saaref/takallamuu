@@ -1,7 +1,7 @@
 import useInput from '../../hooks/useInput';
 import Modal from '../molecules/Modal';
 
-export default function RegisterModal({ onSignIn, isOpenModal = false, setOpenModal }) {
+export default function RegisterModal({ handleRegister, isOpenModal = false, setOpenModal }) {
 	const [name, handleChangeName] = useInput('');
 	const [email, handleChangeEmail] = useInput('');
 	const [password, handleChangePassword] = useInput('');
@@ -46,8 +46,8 @@ export default function RegisterModal({ onSignIn, isOpenModal = false, setOpenMo
 						</div>
 						<button
 							type='button'
-							className='button-submit-form'
-							onClick={() => onSignIn({ email, password })}
+							className='form__button button-register'
+							onClick={() => handleRegister({ email, password, name })}
 						>
 							Register
 						</button>

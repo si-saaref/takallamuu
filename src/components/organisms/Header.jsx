@@ -2,11 +2,14 @@ import { RiLogoutBoxLine } from 'react-icons/ri';
 import LoginModal from './LoginModal';
 import { useState } from 'react';
 import RegisterModal from './RegisterModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncRegister } from '../../states/authUser/action';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
 	const [isOpenModalRegister, setIsOpenModalRegister] = useState(false);
-	const { authUser = false } = {};
+	const { authUser } = useSelector((states) => states);
+	const dispatch = useDispatch();
 
 	const handleOpenLoginModal = () => {
 		setIsOpenModalLogin(true);
@@ -14,6 +17,10 @@ export default function Header({ isLarege = false }) {
 
 	const handleOpenRegisterModal = () => {
 		setIsOpenModalRegister(true);
+	};
+
+	const handleRegister = ({ email, name, password }) => {
+		dispatch(asyncRegister({ email, name, password }));
 	};
 
 	return (
@@ -39,6 +46,7 @@ export default function Header({ isLarege = false }) {
 								<RegisterModal
 									isOpenModal={isOpenModalRegister}
 									setOpenModal={setIsOpenModalRegister}
+									handleRegister={handleRegister}
 								/>
 							</div>
 						</div>

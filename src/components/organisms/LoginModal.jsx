@@ -35,7 +35,7 @@ export default function LoginModal({ onSignIn, isOpenModal = false, setOpenModal
 						</div>
 						<button
 							type='button'
-							className='button-submit-form'
+							className='form__button button-login'
 							onClick={() => onSignIn({ email, password })}
 						>
 							Login
