@@ -3,7 +3,7 @@ import LoginModal from './LoginModal';
 import { useState } from 'react';
 import RegisterModal from './RegisterModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncSetLogin, asyncSetRegister } from '../../states/authUser/action';
+import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../states/authUser/action';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
@@ -25,6 +25,10 @@ export default function Header({ isLarege = false }) {
 
 	const handleLogin = ({ email, password }) => {
 		dispatch(asyncSetLogin({ email, password }));
+	};
+
+	const handleLogout = () => {
+		dispatch(asyncSetLogout());
 	};
 
 	return (
@@ -59,7 +63,7 @@ export default function Header({ isLarege = false }) {
 							</div>
 						</div>
 					) : (
-						<RiLogoutBoxLine />
+						<RiLogoutBoxLine onClick={handleLogout} />
 					)}
 				</div>
 			</header>
