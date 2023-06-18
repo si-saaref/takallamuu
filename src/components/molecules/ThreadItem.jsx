@@ -75,11 +75,14 @@ export default function ThreadItem({ thread }) {
 								<p>{thread.downVotesBy.length}</p>
 							</div>
 							<div className='thread__content__interactive__item'>
-								<ImReply onClick={() => navigate(`/thread/${thread.id}`)} />
+								<ImReply
+									className='button__interactive-item'
+									onClick={() => navigate(`/thread/${thread.id}`)}
+								/>
 								<p>{thread.totalComments ?? thread.comments.length}</p>
 							</div>
 							<div className='thread__content__interactive__item'>
-								<FaLink />
+								<FaLink className='button__interactive-item' />
 							</div>
 						</div>
 					</div>

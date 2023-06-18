@@ -202,6 +202,7 @@
 .thread__content__interactive__item {
 	display: flex;
 	gap: 5px;
+	cursor: pointer;
 }
 
 .thread__content-section-button-reply {
@@ -410,6 +411,11 @@
 /* ! BUTTON INTERACTIVE THREAD AND COMMENT */
 .button__interactive-item {
 	color: lightgrey;
+	transition: 0.4s;
+}
+
+.button__interactive-item:hover {
+	color: rgb(105, 105, 105);
 }
 
 .button__interactive-item.active-vote {
