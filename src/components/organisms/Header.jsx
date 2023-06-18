@@ -21,7 +21,7 @@ export default function Header({ isLarege = false }) {
 								<button className='header__button' onClick={handleOpenLoginModal}>
 									Login
 								</button>
-								<LoginModal isOpenModal={isOpenModalLogin} />
+								<LoginModal isOpenModal={isOpenModalLogin} setOpenModal={setIsOpenModalLogin} />
 							</div>
 							<button className='header__button button__register'>Register</button>
 						</div>

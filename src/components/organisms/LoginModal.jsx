@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
 import Modal from '../molecules/Modal';
 
-export default function LoginModal({ onSignIn, isOpenModal = false }) {
+export default function LoginModal({ onSignIn, isOpenModal = false, setOpenModal }) {
 	const [email, handleChangeEmail] = useInput('');
 	const [password, handleChangePassword] = useInput('');
 
 	return (
 		<>
-			<Modal isOpenModal={isOpenModal} title='Login'>
+			<Modal isOpenModal={isOpenModal} setOpenModal={setOpenModal} title='Login'>
 				<div className='modal-login'>
 					<form className='form-container'>
 						<div className='form__content__inner'>
