@@ -5,6 +5,9 @@ export default function authUserReducer(state = null, action = {}) {
 		[actionType.REGISTER]: () => {
 			return action.payload.authUser;
 		},
+		[actionType.LOGIN]: () => {
+			return action.payload.authUser;
+		},
 		DEFAULT: () => state,
 	};
 
