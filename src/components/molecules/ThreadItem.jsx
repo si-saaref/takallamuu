@@ -19,7 +19,7 @@ export default function ThreadItem({ thread }) {
 	// const dispatch = useDispatch();
 
 	// const likeThread = (threadId) => {
-	// 	if (thread.upVotesBy.includes(authUser.id)) {
+	// 	if (thread.upVotesBy.includes(authUser?.id)) {
 	// 		dispatch(asyncNeutralVoteThreadActionCreator({ threadId }));
 	// 	} else {
 	// 		dispatch(asyncLikeThreadActionCreator({ threadId }));
@@ -27,12 +27,14 @@ export default function ThreadItem({ thread }) {
 	// };
 
 	// const unlikeThread = (threadId) => {
-	// 	if (thread.downVotesBy.includes(authUser.id)) {
+	// 	if (thread.downVotesBy.includes(authUser?.id)) {
 	// 		dispatch(asyncNeutralVoteThreadActionCreator({ threadId }));
 	// 	} else {
 	// 		dispatch(asyncUnlikeThreadActionCreator({ threadId }));
 	// 	}
 	// };
+
+	console.log('AUTH USER => ', authUser);
 
 	const contentThread = decodeHTMLEntities(thread.body);
 
@@ -60,7 +62,7 @@ export default function ThreadItem({ thread }) {
 								<BsSuitHeartFill
 									// onClick={() => likeThread(thread.id)}
 									className={`button__interactive-item ${
-										thread.upVotesBy.includes(authUser.id) && 'active-vote'
+										thread.upVotesBy.includes(authUser?.id) && 'active-vote'
 									}`}
 								/>
 								<p>{thread.upVotesBy.length}</p>
@@ -69,7 +71,7 @@ export default function ThreadItem({ thread }) {
 								<BsHeartbreakFill
 									// onClick={() => unlikeThread(thread.id)}
 									className={`button__interactive-item ${
-										thread.downVotesBy.includes(authUser.id) && 'active-vote'
+										thread.downVotesBy.includes(authUser?.id) && 'active-vote'
 									}`}
 								/>
 								<p>{thread.downVotesBy.length}</p>

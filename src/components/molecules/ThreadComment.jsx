@@ -12,7 +12,7 @@ export default function ThreadComment({ thread }) {
 	// const dispatch = useDispatch();
 
 	// const likeComment = (commentId) => {
-	// 	if (thread.upVotesBy.includes(authUser.id)) {
+	// 	if (thread.upVotesBy.includes(authUser?.id)) {
 	// 		dispatch(asyncNeutralVoteCommentActionCreator({ commentId, threadId }));
 	// 	} else {
 	// 		dispatch(asyncLikeCommentdActionCreator({ commentId, threadId }));
@@ -20,7 +20,7 @@ export default function ThreadComment({ thread }) {
 	// };
 
 	// const unlikeComment = (commentId) => {
-	// 	if (thread.downVotesBy.includes(authUser.id)) {
+	// 	if (thread.downVotesBy.includes(authUser?.id)) {
 	// 		dispatch(asyncNeutralVoteCommentActionCreator({ commentId, threadId }));
 	// 	} else {
 	// 		dispatch(asyncUnlikeCommentdActionCreator({ commentId, threadId }));
@@ -43,7 +43,7 @@ export default function ThreadComment({ thread }) {
 							<BsSuitHeartFill
 								// onClick={() => likeComment(thread.id)}
 								className={`button__interactive-item ${
-									thread.upVotesBy.includes(authUser.id) && 'active-vote'
+									thread.upVotesBy.includes(authUser?.id) && 'active-vote'
 								}`}
 							/>
 							<p>{thread.upVotesBy.length}</p>
@@ -52,7 +52,7 @@ export default function ThreadComment({ thread }) {
 							<BsHeartbreakFill
 								// onClick={() => unlikeComment(thread.id)}
 								className={`button__interactive-item ${
-									thread.downVotesBy.includes(authUser.id) && 'active-vote'
+									thread.downVotesBy.includes(authUser?.id) && 'active-vote'
 								}`}
 							/>
 							<p>{thread.downVotesBy.length}</p>

@@ -225,7 +225,7 @@ const apiServices = (() => {
 		return vote;
 	}
 
-	async function unlikeThread({ threadId }) {
+	async function dislikeThread({ threadId }) {
 		const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/down-vote`, {
 			method: 'POST',
 			headers: {
@@ -247,7 +247,7 @@ const apiServices = (() => {
 		return vote;
 	}
 
-	async function neutralizeVoteThread({ threadId }) {
+	async function neutralThread({ threadId }) {
 		const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/neutral-vote`, {
 			method: 'POST',
 			headers: {
@@ -294,7 +294,7 @@ const apiServices = (() => {
 		return vote;
 	}
 
-	async function unlikeComment({ threadId, commentId }) {
+	async function dislikeComment({ threadId, commentId }) {
 		const response = await _fetchWithAuth(
 			`${BASE_URL}/threads/${threadId}/comments/${commentId}/down-vote`,
 			{
@@ -319,7 +319,7 @@ const apiServices = (() => {
 		return vote;
 	}
 
-	async function neutralizeVoteComment({ threadId, commentId }) {
+	async function neutralComment({ threadId, commentId }) {
 		const response = await _fetchWithAuth(
 			`${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`,
 			{
@@ -357,11 +357,11 @@ const apiServices = (() => {
 		getThreadDetail,
 		addComment,
 		likeThread,
-		unlikeThread,
-		neutralizeVoteThread,
+		dislikeThread,
+		neutralThread,
 		likeComment,
-		unlikeComment,
-		neutralizeVoteComment,
+		dislikeComment,
+		neutralComment,
 	};
 })();
 
