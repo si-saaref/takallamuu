@@ -1,3 +1,3 @@
-export default function TagItem({ title }) {
-	return <button className='tag-item'>{`#${title}`}</button>;
+export default function TagItem({ title, clickable = true }) {
+	return <button className={`tag-item ${!clickable && 'mute-tag'}`}>{`#${title}`}</button>;
 }

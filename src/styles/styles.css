@@ -181,6 +181,10 @@
 	background: white;
 }
 
+.tag-item.mute-tag {
+	cursor: default;
+}
+
 /* ! THREAD ITEM */
 
 .threads-list {
@@ -231,6 +235,8 @@
 
 .thread__content-section-bottom {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	gap: 20px;
 }
 

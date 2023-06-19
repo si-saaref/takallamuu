@@ -88,7 +88,7 @@ export default function HomePage() {
 									tags.length > 7 && 'content--height-fit'
 								}`}
 							>
-								<h1>Trending Tags</h1>
+								<h1>Trending Category</h1>
 								<div className='homepage__trending__list-tag-wrapper'>
 									{tags.map((item, idx) => (
 										<TagItem title={item} key={idx} />

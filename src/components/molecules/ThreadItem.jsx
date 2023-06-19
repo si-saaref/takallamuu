@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import parse from 'html-react-parser';
 import { decodeHTMLEntities, isHTML } from '../../utlis/utils';
 import { asyncDislikeThread, asyncLikeThread, asyncNeutralThread } from '../../states/votes/action';
+import TagItem from './TagItem';
 
 export default function ThreadItem({ thread }) {
 	const { authUser } = useSelector((states) => states);
@@ -80,6 +81,7 @@ export default function ThreadItem({ thread }) {
 								<FaLink className='button__interactive-item' />
 							</div>
 						</div>
+						<TagItem title={thread.category} clickable={false} />
 					</div>
 				</div>
 			</div>
