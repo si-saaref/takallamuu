@@ -1,12 +1,11 @@
 import parser from 'html-react-parser';
 import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncLikeComment, asyncNeutralComment } from '../../states/votes/action';
-// import {
-// 	asyncLikeCommentdActionCreator,
-// 	asyncNeutralVoteCommentActionCreator,
-// 	asyncUnlikeCommentdActionCreator,
-// } from '../states/votes/action';
+import {
+	asyncDislikeComment,
+	asyncLikeComment,
+	asyncNeutralComment,
+} from '../../states/votes/action';
 
 export default function ThreadComment({ thread, threadId }) {
 	const { authUser } = useSelector((states) => states);
@@ -20,13 +19,13 @@ export default function ThreadComment({ thread, threadId }) {
 		}
 	};
 
-	// const unlikeComment = (commentId) => {
-	// 	if (thread.downVotesBy.includes(authUser?.id)) {
-	// 		dispatch(asyncNeutralVoteCommentActionCreator({ commentId, threadId }));
-	// 	} else {
-	// 		dispatch(asyncUnlikeCommentdActionCreator({ commentId, threadId }));
-	// 	}
-	// };
+	const dislikeComment = (commentId) => {
+		if (thread.downVotesBy.includes(authUser?.id)) {
+			dispatch(asyncNeutralComment({ commentId, threadId }));
+		} else {
+			dispatch(asyncDislikeComment({ commentId, threadId }));
+		}
+	};
 
 	return (
 		<>
@@ -51,7 +50,7 @@ export default function ThreadComment({ thread, threadId }) {
 						</div>
 						<div className='comment__content__interactive__item'>
 							<BsHeartbreakFill
-								// onClick={() => unlikeComment(thread.id)}
+								onClick={() => dislikeComment(thread.id)}
 								className={`button__interactive-item ${
 									thread.downVotesBy.includes(authUser?.id) && 'active-vote'
 								}`}

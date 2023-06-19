@@ -98,7 +98,7 @@ export const dislikeComment = (vote) => {
 	};
 };
 
-export const asyncUnlikeComment = ({ threadId, commentId }) => {
+export const asyncDislikeComment = ({ threadId, commentId }) => {
 	return async (dispatch) => {
 		try {
 			const vote = await apiServices.dislikeComment({ threadId, commentId });

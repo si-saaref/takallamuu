@@ -16,7 +16,7 @@ export default function DetailPage() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
+		// window.scrollTo(0, 0);
 		dispatch(asyncGetDetailThread({ idThread: id }));
 	}, [id, dispatch, comment, votes]);
 

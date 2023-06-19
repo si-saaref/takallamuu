@@ -29,8 +29,6 @@ export default function ThreadItem({ thread }) {
 		}
 	};
 
-	console.log('AUTH USER => ', authUser);
-
 	const contentThread = decodeHTMLEntities(thread.body);
 
 	return (
