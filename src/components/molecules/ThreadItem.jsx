@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import parse from 'html-react-parser';
 import { decodeHTMLEntities, isHTML } from '../../utlis/utils';
-import { asyncLikeThread, asyncNeutralThread } from '../../states/votes/action';
+import { asyncDislikeThread, asyncLikeThread, asyncNeutralThread } from '../../states/votes/action';
 
 export default function ThreadItem({ thread }) {
 	const { authUser } = useSelector((states) => states);
@@ -21,13 +21,13 @@ export default function ThreadItem({ thread }) {
 		}
 	};
 
-	// const unlikeThread = (threadId) => {
-	// 	if (thread.downVotesBy.includes(authUser?.id)) {
-	// 		dispatch(asyncNeutralVoteThreadActionCreator({ threadId }));
-	// 	} else {
-	// 		dispatch(asyncUnlikeThreadActionCreator({ threadId }));
-	// 	}
-	// };
+	const dislikeThread = (threadId) => {
+		if (thread.downVotesBy.includes(authUser?.id)) {
+			dispatch(asyncNeutralThread({ threadId }));
+		} else {
+			dispatch(asyncDislikeThread({ threadId }));
+		}
+	};
 
 	console.log('AUTH USER => ', authUser);
 
@@ -64,7 +64,7 @@ export default function ThreadItem({ thread }) {
 							</div>
 							<div className='thread__content__interactive__item'>
 								<BsHeartbreakFill
-									// onClick={() => unlikeThread(thread.id)}
+									onClick={() => dislikeThread(thread.id)}
 									className={`button__interactive-item ${
 										thread.downVotesBy.includes(authUser?.id) && 'active-vote'
 									}`}
