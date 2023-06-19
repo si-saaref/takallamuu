@@ -8,9 +8,10 @@ import { asyncGetAllUsers } from '../states/users/action';
 import Header from '../components/organisms/Header';
 import NewThreadModal from '../components/organisms/NewThreadModal';
 import TagItem from '../components/molecules/TagItem';
+import { asyncGetAllTags } from '../states/tags/action';
 
 export default function HomePage() {
-	const { threads, users, votes } = useSelector((states) => states);
+	const { threads, users, votes, tags } = useSelector((states) => states);
 	const [isOpenModalThread, setIsOpenModalThread] = useState(false);
 	// const { authUser, threads, users, votes } = useSelector((states) => states);
 	const dispatch = useDispatch();
@@ -20,6 +21,10 @@ export default function HomePage() {
 		dispatch(asyncGetAllUsers());
 		dispatch(asyncGetAllThreads());
 	}, [dispatch, votes]);
+
+	useEffect(() => {
+		dispatch(asyncGetAllTags());
+	}, [dispatch, threads]);
 
 	const listThreads = threads.map((thread) => ({
 		...thread,
@@ -39,28 +44,6 @@ export default function HomePage() {
 	};
 
 	console.log(listThreads);
-
-	const listTag = [
-		'Backend',
-		'Food',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-		'Technology',
-	];
-
-	const cuttedListTag = [...listTag].slice(0, 7);
 
 	return (
 		<>
@@ -93,11 +76,11 @@ export default function HomePage() {
 							<aside className='homepage__sidebar__trending content-container'>
 								<h1>Trending Tags</h1>
 								<div className='homepage__trending__list-tag-wrapper'>
-									{cuttedListTag.map((item, idx) => (
+									{tags.map((item, idx) => (
 										<TagItem title={item} key={idx} />
 									))}
 								</div>
-								{listTag.length >= 7 && (
+								{tags.length >= 7 && (
 									<button className='homepage__trending__show-more-button'>Show More</button>
 								)}
 							</aside>
