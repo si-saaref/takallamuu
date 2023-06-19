@@ -11,14 +11,14 @@ import Header from '../components/organisms/Header';
 
 export default function DetailPage() {
 	const { id } = useParams();
-	const { detailThread, comment, authUser } = useSelector((states) => states);
+	const { detailThread, comment, authUser, votes } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		dispatch(asyncGetDetailThread({ idThread: id }));
-	}, [id, dispatch, comment]);
+	}, [id, dispatch, comment, votes]);
 
 	const onReplyThread = ({ content, setValueComment }) => {
 		dispatch(asyncAddCommentThread({ threadId: id, content }));

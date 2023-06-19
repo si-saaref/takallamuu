@@ -9,7 +9,7 @@ import Header from '../components/organisms/Header';
 import NewThreadModal from '../components/organisms/NewThreadModal';
 
 export default function HomePage() {
-	const { threads, users } = useSelector((states) => states);
+	const { threads, users, votes } = useSelector((states) => states);
 	const [isOpenModalThread, setIsOpenModalThread] = useState(false);
 	// const { authUser, threads, users, votes } = useSelector((states) => states);
 	const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function HomePage() {
 	useEffect(() => {
 		dispatch(asyncGetAllUsers());
 		dispatch(asyncGetAllThreads());
-	}, [dispatch]);
+	}, [dispatch, votes]);
 
 	const listThreads = threads.map((thread) => ({
 		...thread,

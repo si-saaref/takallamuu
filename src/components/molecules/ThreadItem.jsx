@@ -3,28 +3,23 @@ import { ImReply } from 'react-icons/im';
 import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
 import { FaLink } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import {
-// 	asyncLikeThreadActionCreator,
-// 	asyncNeutralVoteThreadActionCreator,
-// 	asyncUnlikeThreadActionCreator,
-// } from '../states/votes/action';
+import { useDispatch, useSelector } from 'react-redux';
 import parse from 'html-react-parser';
 import { decodeHTMLEntities, isHTML } from '../../utlis/utils';
-import { useSelector } from 'react-redux';
+import { asyncLikeThread, asyncNeutralThread } from '../../states/votes/action';
 
 export default function ThreadItem({ thread }) {
 	const { authUser } = useSelector((states) => states);
 	const navigate = useNavigate();
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-	// const likeThread = (threadId) => {
-	// 	if (thread.upVotesBy.includes(authUser?.id)) {
-	// 		dispatch(asyncNeutralVoteThreadActionCreator({ threadId }));
-	// 	} else {
-	// 		dispatch(asyncLikeThreadActionCreator({ threadId }));
-	// 	}
-	// };
+	const likeThread = (threadId) => {
+		if (thread.upVotesBy.includes(authUser?.id)) {
+			dispatch(asyncNeutralThread({ threadId }));
+		} else {
+			dispatch(asyncLikeThread({ threadId }));
+		}
+	};
 
 	// const unlikeThread = (threadId) => {
 	// 	if (thread.downVotesBy.includes(authUser?.id)) {
@@ -60,7 +55,7 @@ export default function ThreadItem({ thread }) {
 						<div className='thread__content__interactive-wrapper'>
 							<div className='thread__content__interactive__item'>
 								<BsSuitHeartFill
-									// onClick={() => likeThread(thread.id)}
+									onClick={() => likeThread(thread.id)}
 									className={`button__interactive-item ${
 										thread.upVotesBy.includes(authUser?.id) && 'active-vote'
 									}`}
