@@ -7,6 +7,7 @@ import { asyncGetAllUsers } from '../states/users/action';
 // import { useNavigate } from 'react-router-dom';
 import Header from '../components/organisms/Header';
 import NewThreadModal from '../components/organisms/NewThreadModal';
+import TagItem from '../components/molecules/TagItem';
 
 export default function HomePage() {
 	const { threads, users, votes } = useSelector((states) => states);
@@ -39,6 +40,28 @@ export default function HomePage() {
 
 	console.log(listThreads);
 
+	const listTag = [
+		'Backend',
+		'Food',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+		'Technology',
+	];
+
+	const cuttedListTag = [...listTag].slice(0, 7);
+
 	return (
 		<>
 			<Header isLarege={true} />
@@ -69,6 +92,14 @@ export default function HomePage() {
 						<div className='homepage__sidebar-wrapper'>
 							<aside className='homepage__sidebar__trending content-container'>
 								<h1>Trending Tags</h1>
+								<div className='homepage__trending__list-tag-wrapper'>
+									{cuttedListTag.map((item, idx) => (
+										<TagItem title={item} key={idx} />
+									))}
+								</div>
+								{listTag.length >= 7 && (
+									<button className='homepage__trending__show-more-button'>Show More</button>
+								)}
 							</aside>
 							<aside className='homepage__sidebar__leaderboard content-container'>
 								<h1>Leaderboard</h1>
