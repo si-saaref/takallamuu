@@ -8,11 +8,12 @@ import { asyncGetAllUsers } from '../states/users/action';
 import Header from '../components/organisms/Header';
 import NewThreadModal from '../components/organisms/NewThreadModal';
 import TagItem from '../components/molecules/TagItem';
-import { asyncGetAllTags } from '../states/tags/action';
+import { asyncGetAllTags, asyncShowMoreTags } from '../states/tags/action';
 
 export default function HomePage() {
 	const { threads, users, votes, tags } = useSelector((states) => states);
 	const [isOpenModalThread, setIsOpenModalThread] = useState(false);
+	const [isShowFullTags, setIsShowFullTags] = useState(false);
 	// const { authUser, threads, users, votes } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	// const navigate = useNavigate();
@@ -43,7 +44,16 @@ export default function HomePage() {
 		setIsOpenModalThread(false);
 	};
 
-	console.log(listThreads);
+	const handleShowFullTags = () => {
+		setIsShowFullTags((preState) => {
+			if (!preState) {
+				dispatch(asyncShowMoreTags());
+			} else {
+				dispatch(asyncGetAllTags());
+			}
+			return !preState;
+		});
+	};
 
 	return (
 		<>
@@ -73,7 +83,11 @@ export default function HomePage() {
 							</div>
 						</div>
 						<div className='homepage__sidebar-wrapper'>
-							<aside className='homepage__sidebar__trending content-container'>
+							<aside
+								className={`homepage__sidebar__trending content-container ${
+									tags.length > 7 && 'content--height-fit'
+								}`}
+							>
 								<h1>Trending Tags</h1>
 								<div className='homepage__trending__list-tag-wrapper'>
 									{tags.map((item, idx) => (
@@ -81,7 +95,12 @@ export default function HomePage() {
 									))}
 								</div>
 								{tags.length >= 7 && (
-									<button className='homepage__trending__show-more-button'>Show More</button>
+									<button
+										className='homepage__trending__show-more-button'
+										onClick={handleShowFullTags}
+									>
+										{isShowFullTags ? 'Show Less' : 'Show More'}
+									</button>
 								)}
 							</aside>
 							<aside className='homepage__sidebar__leaderboard content-container'>

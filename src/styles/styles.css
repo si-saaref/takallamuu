@@ -124,6 +124,10 @@
 	padding: 2rem;
 }
 
+.homepage__sidebar__trending.content--height-fit {
+	max-height: fit-content;
+}
+
 .homepage__sidebar__leaderboard {
 	background: white;
 	width: 100%;

@@ -45,23 +45,3 @@ export const asyncShowMoreTags = () => {
 		}
 	};
 };
-
-const listTag = [
-	'Backend',
-	'Food',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-	'Technology',
-];
