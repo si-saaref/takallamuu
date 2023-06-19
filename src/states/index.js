@@ -6,6 +6,7 @@ import commentThreadReducer from './comments/reducer';
 import authUserReducer from './authUser/reducer';
 import isPreloadReducer from './isPreload/reducer';
 import votesThreadReducer from './votes/reducer';
+import tagsReducer from './tags/reducer';
 
 export const store = configureStore({
 	reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
 		authUser: authUserReducer,
 		isPreload: isPreloadReducer,
 		votes: votesThreadReducer,
+		tags: tagsReducer,
 	},
 });
