@@ -185,6 +185,10 @@
 	cursor: default;
 }
 
+.selected-tag {
+	background: rgb(255, 194, 111, 0.5);
+}
+
 /* ! THREAD ITEM */
 
 .threads-list {

@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ThreadItem from '../components/molecules/ThreadItem';
-import { asyncAddNewThread, asyncGetAllThreads } from '../states/threads/action';
+import {
+	asyncAddNewThread,
+	asyncGetAllThreads,
+	asyncShowFilteredThreads,
+} from '../states/threads/action';
 import { asyncGetAllUsers } from '../states/users/action';
 // import { AiOutlinePlusCircle } from 'react-icons/ai';
 // import { useNavigate } from 'react-router-dom';
@@ -14,6 +18,7 @@ export default function HomePage() {
 	const { threads, users, votes, tags } = useSelector((states) => states);
 	const [isOpenModalThread, setIsOpenModalThread] = useState(false);
 	const [isShowFullTags, setIsShowFullTags] = useState(false);
+	const [selectedCategory, setSelectedCategory] = useState(null);
 	// const { authUser, threads, users, votes } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	// const navigate = useNavigate();
@@ -55,6 +60,16 @@ export default function HomePage() {
 		});
 	};
 
+	const handleShowThreadByCategory = (category) => {
+		if (selectedCategory === null) {
+			dispatch(asyncShowFilteredThreads({ category }));
+			setSelectedCategory(category);
+		} else {
+			dispatch(asyncGetAllThreads());
+			setSelectedCategory(null);
+		}
+	};
+
 	return (
 		<>
 			<Header isLarege={true} />
@@ -91,7 +106,12 @@ export default function HomePage() {
 								<h1>Trending Category</h1>
 								<div className='homepage__trending__list-tag-wrapper'>
 									{tags.map((item, idx) => (
-										<TagItem title={item} key={idx} />
+										<TagItem
+											title={item}
+											key={idx}
+											onClick={() => handleShowThreadByCategory(item)}
+											selectedCategory={selectedCategory}
+										/>
 									))}
 								</div>
 								{tags.length >= 7 && (

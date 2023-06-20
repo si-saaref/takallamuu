@@ -1,16 +1,16 @@
 const apiServices = (() => {
 	const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
-	function getAccessToken() {
-		return localStorage.getItem('accessToken');
+	function getFromStorage(keyName) {
+		return JSON.parse(localStorage.getItem(keyName));
 	}
 
-	function putAccessToken(token) {
-		localStorage.setItem('accessToken', token);
+	function putToStorage({ keyName, item }) {
+		localStorage.setItem(keyName, JSON.stringify(item));
 	}
 
-	function removeAccessToken() {
-		return localStorage.removeItem('accessToken');
+	function removeFromStorage(keyName) {
+		return localStorage.removeItem(keyName);
 	}
 
 	async function _fetchWithAuth(url, options = {}) {
@@ -18,7 +18,7 @@ const apiServices = (() => {
 			...options,
 			headers: {
 				...options.headers,
-				Authorization: `Bearer ${getAccessToken()}`,
+				Authorization: `Bearer ${getFromStorage('accessToken')}`,
 			},
 		});
 	}
@@ -345,9 +345,9 @@ const apiServices = (() => {
 	}
 
 	return {
-		putAccessToken,
-		getAccessToken,
-		removeAccessToken,
+		putToStorage,
+		getFromStorage,
+		removeFromStorage,
 		register,
 		login,
 		getOwnProfile,

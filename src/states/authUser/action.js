@@ -18,7 +18,7 @@ export const setRegister = (authUser) => {
 export const asyncSetRegister = ({ name, email, password }) => {
 	return async (dispatch) => {
 		try {
-			const authUser = await apiServices.setRegister({ email, name, password });
+			const authUser = await apiServices.register({ email, name, password });
 			dispatch(asyncSetLogin({ email, password }));
 			dispatch(setRegister(authUser));
 		} catch (error) {
@@ -40,7 +40,7 @@ export const asyncSetLogin = ({ email, password }) => {
 	return async (dispatch) => {
 		try {
 			const token = await apiServices.login({ email, password });
-			apiServices.putAccessToken(token);
+			apiServices.putToStorage({ keyName: 'accessToken', item: token });
 			const authUser = await apiServices.getOwnProfile();
 			dispatch(setLogin(authUser));
 		} catch (error) {
@@ -62,7 +62,7 @@ export const setLogout = () => {
 export const asyncSetLogout = () => {
 	return async (dispatch) => {
 		try {
-			apiServices.removeAccessToken();
+			apiServices.removeFromStorage('accessToken');
 			dispatch(setLogout());
 		} catch (error) {
 			alert(error.message);

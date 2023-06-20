@@ -56,7 +56,7 @@ export const showFilteredThreads = (threads) => {
 };
 
 export const asyncShowFilteredThreads = ({ category }) => {
-	return (dispatch, getState) => {
+	return async (dispatch, getState) => {
 		try {
 			const { threads } = getState();
 			const filteredThreads = threads.filter((item) => item.category === category);
