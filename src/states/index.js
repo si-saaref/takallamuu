@@ -8,6 +8,7 @@ import isPreloadReducer from './isPreload/reducer';
 import votesThreadReducer from './votes/reducer';
 import tagsReducer from './tags/reducer';
 import errorMessageReducer from './error/reducer';
+import leaderboardsReducer from './leaderboards/reducer';
 
 export const store = configureStore({
 	reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
 		votes: votesThreadReducer,
 		tags: tagsReducer,
 		errorMessage: errorMessageReducer,
+		leaderboards: leaderboardsReducer,
 	},
 });

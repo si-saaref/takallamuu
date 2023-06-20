@@ -344,6 +344,28 @@ const apiServices = (() => {
 		return vote;
 	}
 
+	async function getAllLeaderboards() {
+		const response = await _fetchWithAuth(`${BASE_URL}/leaderboards`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+
+		const responseJson = await response.json();
+
+		const { status, message } = responseJson;
+
+		if (status !== 'success') {
+			throw new Error(message);
+		}
+		const {
+			data: { vote },
+		} = responseJson;
+
+		return vote;
+	}
+
 	return {
 		putToStorage,
 		getFromStorage,
@@ -362,6 +384,7 @@ const apiServices = (() => {
 		likeComment,
 		dislikeComment,
 		neutralComment,
+		getAllLeaderboards,
 	};
 })();
 
