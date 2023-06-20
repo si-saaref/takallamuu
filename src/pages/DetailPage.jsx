@@ -44,7 +44,7 @@ export default function DetailPage() {
 								<AiOutlineArrowLeft onClick={handleBackPage} />
 								<p>Thread</p>
 							</div>
-							<ThreadItem thread={detailThread} />
+							<ThreadItem thread={detailThread} isDetailPage />
 							<div className='threads-comments'>
 								{authUser && (
 									<FormComment replyTo={detailThread.owner.name} onReplyThread={onReplyThread} />

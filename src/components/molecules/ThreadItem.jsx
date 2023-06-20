@@ -10,13 +10,13 @@ import { asyncDislikeThread, asyncLikeThread, asyncNeutralThread } from '../../s
 import TagItem from './TagItem';
 import useNotification from '../../hooks/useNotification';
 
-export default function ThreadItem({ thread }) {
+export default function ThreadItem({ thread, isDetailPage = false }) {
 	const { authUser } = useSelector((states) => states);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const notif = useNotification();
 
-	const likeThread = (threadId) => {
+	const handleLikeThread = (threadId) => {
 		if (!authUser) {
 			notif.customError('like');
 			return;
@@ -28,7 +28,7 @@ export default function ThreadItem({ thread }) {
 		}
 	};
 
-	const dislikeThread = (threadId) => {
+	const handleDislikeThread = (threadId) => {
 		if (!authUser) {
 			notif.customError('dislike');
 			return;
@@ -38,6 +38,13 @@ export default function ThreadItem({ thread }) {
 		} else {
 			dispatch(asyncDislikeThread({ threadId }));
 		}
+	};
+
+	const handleCopyLinkThread = () => {
+		const link = isDetailPage ? window.location.href : `${window.location.href}thread/${thread.id}`;
+		console.log(link);
+		navigator.clipboard.writeText(link);
+		notif.miniSuccess('Successfully copied to clipboard');
 	};
 
 	const contentThread = decodeHTMLEntities(thread.body);
@@ -64,7 +71,7 @@ export default function ThreadItem({ thread }) {
 						<div className='thread__content__interactive-wrapper'>
 							<div className='thread__content__interactive__item'>
 								<BsSuitHeartFill
-									onClick={() => likeThread(thread.id)}
+									onClick={() => handleLikeThread(thread.id)}
 									className={`button__interactive-item ${
 										thread.upVotesBy.includes(authUser?.id) && 'active-vote'
 									}`}
@@ -73,7 +80,7 @@ export default function ThreadItem({ thread }) {
 							</div>
 							<div className='thread__content__interactive__item'>
 								<BsHeartbreakFill
-									onClick={() => dislikeThread(thread.id)}
+									onClick={() => handleDislikeThread(thread.id)}
 									className={`button__interactive-item ${
 										thread.downVotesBy.includes(authUser?.id) && 'active-vote'
 									}`}
@@ -88,7 +95,7 @@ export default function ThreadItem({ thread }) {
 								<p>{thread.totalComments ?? thread.comments.length}</p>
 							</div>
 							<div className='thread__content__interactive__item'>
-								<FaLink className='button__interactive-item' />
+								<FaLink className='button__interactive-item' onClick={handleCopyLinkThread} />
 							</div>
 						</div>
 						<TagItem title={thread.category} clickable={false} />
