@@ -93,6 +93,7 @@ export default function HomePage() {
 									isOpenModal={isOpenModalThread}
 									setOpenModal={setIsOpenModalThread}
 									handleAddThread={handleAddThread}
+									listThreads={listThreads}
 								/>
 							</div>
 							<div className='threads-list'>
