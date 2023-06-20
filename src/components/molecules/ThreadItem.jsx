@@ -17,7 +17,10 @@ export default function ThreadItem({ thread }) {
 	const notif = useNotification();
 
 	const likeThread = (threadId) => {
-		notif();
+		if (!authUser) {
+			notif.customError('like');
+			return;
+		}
 		if (thread.upVotesBy.includes(authUser?.id)) {
 			dispatch(asyncNeutralThread({ threadId }));
 		} else {
@@ -26,6 +29,10 @@ export default function ThreadItem({ thread }) {
 	};
 
 	const dislikeThread = (threadId) => {
+		if (!authUser) {
+			notif.customError('dislike');
+			return;
+		}
 		if (thread.downVotesBy.includes(authUser?.id)) {
 			dispatch(asyncNeutralThread({ threadId }));
 		} else {
