@@ -16,7 +16,7 @@ import { asyncGetAllTags, asyncShowMoreTags } from '../states/tags/action';
 import { asyncGetAllLeaderboards } from '../states/leaderboards/action';
 
 export default function HomePage() {
-	const { threads, users, votes, tags, authUser } = useSelector((states) => states);
+	const { threads, users, votes, tags, authUser, leaderboards } = useSelector((states) => states);
 	const [isOpenModalThread, setIsOpenModalThread] = useState(false);
 	const [isShowFullTags, setIsShowFullTags] = useState(false);
 	const [selectedCategory, setSelectedCategory] = useState(null);
@@ -135,11 +135,13 @@ export default function HomePage() {
 										<p>Name</p>
 										<p>Score</p>
 									</div>
-									<div className='homepage__leaderboard__body leaderboard-content'>
-										<p>1</p>
-										<p>John</p>
-										<p>10</p>
-									</div>
+									{leaderboards.map((item, idx) => (
+										<div className='homepage__leaderboard__body leaderboard-content' key={idx}>
+											<p>{idx + 1}</p>
+											<p>{item.user.name}</p>
+											<p>{item.score}</p>
+										</div>
+									))}
 								</div>
 							</aside>
 						</div>
