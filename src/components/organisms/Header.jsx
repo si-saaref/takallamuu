@@ -5,6 +5,7 @@ import RegisterModal from './RegisterModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../states/authUser/action';
 import { useNavigate } from 'react-router-dom';
+import useNotification from '../../hooks/useNotification';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
@@ -12,6 +13,7 @@ export default function Header({ isLarege = false }) {
 	const { authUser } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const notif = useNotification();
 
 	const handleOpenLoginModal = () => {
 		setIsOpenModalLogin(true);
@@ -22,8 +24,12 @@ export default function Header({ isLarege = false }) {
 	};
 
 	const handleRegister = ({ email, name, password }) => {
-		dispatch(asyncSetRegister({ email, name, password }));
-		setIsOpenModalRegister(false);
+		try {
+			dispatch(asyncSetRegister({ email, name, password }));
+			setIsOpenModalRegister(false);
+		} catch (error) {
+			notif.miniError('Please fill correctly');
+		}
 	};
 
 	const handleLogin = ({ email, password }) => {

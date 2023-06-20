@@ -4,6 +4,8 @@ import { IoIosCloseCircle } from 'react-icons/io';
 export default function useNotification() {
 	const miniSuccess = (content) => toast.success(content);
 
+	const miniError = (content) => toast.error(content);
+
 	const customError = (action) =>
 		toast.custom(
 			<div className='notification-toast-wrapper'>
@@ -23,5 +25,6 @@ export default function useNotification() {
 	return {
 		customError,
 		miniSuccess,
+		miniError,
 	};
 }

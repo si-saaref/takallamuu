@@ -22,7 +22,7 @@ export const asyncSetRegister = ({ name, email, password }) => {
 			dispatch(asyncSetLogin({ email, password }));
 			dispatch(setRegister(authUser));
 		} catch (error) {
-			alert(error.message);
+			console.log(error.message);
 		}
 	};
 };
@@ -44,7 +44,6 @@ export const asyncSetLogin = ({ email, password }) => {
 			const authUser = await apiServices.getOwnProfile();
 			dispatch(setLogin(authUser));
 		} catch (error) {
-			alert(error.message);
 			console.log(error.message);
 		}
 	};
@@ -65,7 +64,7 @@ export const asyncSetLogout = () => {
 			apiServices.removeFromStorage('accessToken');
 			dispatch(setLogout());
 		} catch (error) {
-			alert(error.message);
+			console.log(error.message);
 		}
 	};
 };
