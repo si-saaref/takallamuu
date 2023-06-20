@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { asyncGetDetailThread } from '../states/detailThread/action';
-import { useNavigate, useParams } from 'react-router-dom';
-import ThreadItem from '../components/molecules/ThreadItem';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import ThreadComment from '../components/molecules/ThreadComment';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import FormComment from '../components/molecules/FormComment';
-import { asyncAddCommentThread } from '../states/comments/action';
+import ThreadComment from '../components/molecules/ThreadComment';
+import ThreadItem from '../components/molecules/ThreadItem';
 import Header from '../components/organisms/Header';
+import { asyncAddCommentThread } from '../states/comments/action';
+import { asyncGetDetailThread } from '../states/detailThread/action';
 
 export default function DetailPage() {
 	const { id } = useParams();

@@ -8,14 +8,24 @@ import { useEffect } from 'react';
 import { asyncSetIsPreload } from './states/isPreload/action';
 import { Toaster } from 'react-hot-toast';
 import NotFound from './pages/NotfOUND';
+import useNotification from './hooks/useNotification';
+import { setErrorMessage } from './states/error/action';
 
 function App() {
-	const { isPreload, authUser } = useSelector((states) => states);
+	const { isPreload, authUser, errorMessage } = useSelector((states) => states);
 	const dispatch = useDispatch();
+	const notif = useNotification();
 
 	useEffect(() => {
 		dispatch(asyncSetIsPreload());
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (errorMessage) {
+			notif.miniError(errorMessage);
+			dispatch(setErrorMessage(null));
+		}
+	}, [dispatch, notif, errorMessage]);
 
 	if (isPreload && !authUser) {
 		return null;

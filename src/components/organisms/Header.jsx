@@ -1,27 +1,17 @@
+import { useState } from 'react';
 import { RiLogoutBoxLine } from 'react-icons/ri';
-import LoginModal from './LoginModal';
-import { useEffect, useState } from 'react';
-import RegisterModal from './RegisterModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../states/authUser/action';
 import { useNavigate } from 'react-router-dom';
-import useNotification from '../../hooks/useNotification';
-import { setErrorMessage } from '../../states/error/action';
+import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../states/authUser/action';
+import LoginModal from './LoginModal';
+import RegisterModal from './RegisterModal';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
 	const [isOpenModalRegister, setIsOpenModalRegister] = useState(false);
-	const { authUser, errorMessage } = useSelector((states) => states);
+	const { authUser } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const notif = useNotification();
-
-	useEffect(() => {
-		if (errorMessage) {
-			notif.miniError(errorMessage);
-			dispatch(setErrorMessage(null));
-		}
-	}, [dispatch, notif, errorMessage]);
 
 	const handleOpenLoginModal = () => {
 		setIsOpenModalLogin(true);
