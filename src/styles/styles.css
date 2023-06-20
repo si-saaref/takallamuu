@@ -500,3 +500,20 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.notfoundpage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.notfoundpage img {
+	width: 500px;
+}
+
+.notfoundpage a {
+	font-size: 0.8rem;
+	color: black;
+}

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { asyncSetIsPreload } from './states/isPreload/action';
 import { Toaster } from 'react-hot-toast';
+import NotFound from './pages/NotfOUND';
 
 function App() {
 	const { isPreload, authUser } = useSelector((states) => states);
@@ -29,6 +30,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<HomePage />} />
 					<Route path='/thread/:id' element={<DetailPage />} />
+					<Route path='/*' element={<NotFound />} />
 				</Routes>
 			</main>
 		</>
