@@ -15,7 +15,7 @@ import TagItem from '../components/molecules/TagItem';
 import { asyncGetAllTags, asyncShowMoreTags } from '../states/tags/action';
 
 export default function HomePage() {
-	const { threads, users, votes, tags } = useSelector((states) => states);
+	const { threads, users, votes, tags, authUser } = useSelector((states) => states);
 	const [isOpenModalThread, setIsOpenModalThread] = useState(false);
 	const [isShowFullTags, setIsShowFullTags] = useState(false);
 	const [selectedCategory, setSelectedCategory] = useState(null);
@@ -79,12 +79,14 @@ export default function HomePage() {
 						<div className='homepage__discussion-wrapper content-container'>
 							<div className='homepage__header'>
 								<h1>Explore</h1>
-								<button
-									className='homepage__button-add-thread'
-									onClick={() => setIsOpenModalThread(true)}
-								>
-									Kallim
-								</button>
+								{authUser && (
+									<button
+										className='homepage__button-add-thread'
+										onClick={() => setIsOpenModalThread(true)}
+									>
+										Kallim
+									</button>
+								)}
 								<NewThreadModal
 									isOpenModal={isOpenModalThread}
 									setOpenModal={setIsOpenModalThread}

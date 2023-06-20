@@ -8,13 +8,16 @@ import parse from 'html-react-parser';
 import { decodeHTMLEntities, isHTML } from '../../utlis/utils';
 import { asyncDislikeThread, asyncLikeThread, asyncNeutralThread } from '../../states/votes/action';
 import TagItem from './TagItem';
+import useNotification from '../../hooks/useNotification';
 
 export default function ThreadItem({ thread }) {
 	const { authUser } = useSelector((states) => states);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const notif = useNotification();
 
 	const likeThread = (threadId) => {
+		notif();
 		if (thread.upVotesBy.includes(authUser?.id)) {
 			dispatch(asyncNeutralThread({ threadId }));
 		} else {

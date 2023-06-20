@@ -19,7 +19,6 @@ export const asyncGetAllTags = () => {
 		try {
 			const { threads } = getState();
 			const tagsFromStorage = apiServices.getFromStorage('listTags');
-			console.log('asyam', tagsFromStorage);
 			const listTags =
 				tagsFromStorage.length === 0
 					? threads.map((item) => item?.category).slice(0, 7)
@@ -27,7 +26,6 @@ export const asyncGetAllTags = () => {
 
 			apiServices.putToStorage({ keyName: 'listTags', item: listTags });
 
-			console.log('list hread +>', listTags);
 			dispatch(getAllTags(listTags));
 		} catch (error) {
 			console.log(error);

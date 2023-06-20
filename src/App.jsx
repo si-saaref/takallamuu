@@ -6,6 +6,7 @@ import './styles/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { asyncSetIsPreload } from './states/isPreload/action';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 	const { isPreload, authUser } = useSelector((states) => states);
@@ -21,6 +22,9 @@ function App() {
 
 	return (
 		<>
+			<div>
+				<Toaster />
+			</div>
 			<main>
 				<Routes>
 					<Route path='/' element={<HomePage />} />
