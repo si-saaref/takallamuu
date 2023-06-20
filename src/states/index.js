@@ -7,6 +7,7 @@ import authUserReducer from './authUser/reducer';
 import isPreloadReducer from './isPreload/reducer';
 import votesThreadReducer from './votes/reducer';
 import tagsReducer from './tags/reducer';
+import errorMessageReducer from './error/reducer';
 
 export const store = configureStore({
 	reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
 		isPreload: isPreloadReducer,
 		votes: votesThreadReducer,
 		tags: tagsReducer,
+		errorMessage: errorMessageReducer,
 	},
 });

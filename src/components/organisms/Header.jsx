@@ -1,19 +1,27 @@
 import { RiLogoutBoxLine } from 'react-icons/ri';
 import LoginModal from './LoginModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RegisterModal from './RegisterModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../states/authUser/action';
 import { useNavigate } from 'react-router-dom';
 import useNotification from '../../hooks/useNotification';
+import { setErrorMessage } from '../../states/error/action';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
 	const [isOpenModalRegister, setIsOpenModalRegister] = useState(false);
-	const { authUser } = useSelector((states) => states);
+	const { authUser, errorMessage } = useSelector((states) => states);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const notif = useNotification();
+
+	useEffect(() => {
+		if (errorMessage) {
+			notif.miniError(errorMessage);
+			dispatch(setErrorMessage(null));
+		}
+	}, [dispatch, notif, errorMessage]);
 
 	const handleOpenLoginModal = () => {
 		setIsOpenModalLogin(true);
@@ -24,12 +32,8 @@ export default function Header({ isLarege = false }) {
 	};
 
 	const handleRegister = ({ email, name, password }) => {
-		try {
-			dispatch(asyncSetRegister({ email, name, password }));
-			setIsOpenModalRegister(false);
-		} catch (error) {
-			notif.miniError('Please fill correctly');
-		}
+		dispatch(asyncSetRegister({ email, name, password }));
+		setIsOpenModalRegister(false);
 	};
 
 	const handleLogin = ({ email, password }) => {

@@ -1,4 +1,5 @@
 import apiServices from '../../utlis/apiServices';
+import { setErrorMessage } from '../error/action';
 
 export const actionType = {
 	REGISTER: 'REGISTER',
@@ -22,6 +23,7 @@ export const asyncSetRegister = ({ name, email, password }) => {
 			dispatch(asyncSetLogin({ email, password }));
 			dispatch(setRegister(authUser));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
