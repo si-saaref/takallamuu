@@ -1,4 +1,5 @@
 import apiServices from '../../utlis/apiServices';
+import { setErrorMessage } from '../error/action';
 
 export const actionType = {
 	LIKE_THREAD: 'LIKE_THREAD',
@@ -24,6 +25,7 @@ export const asyncLikeThread = ({ threadId }) => {
 			const vote = await apiServices.likeThread({ threadId });
 			dispatch(likeThread(vote));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
@@ -44,6 +46,7 @@ export const asyncDislikeThread = ({ threadId }) => {
 			const vote = await apiServices.dislikeThread({ threadId });
 			dispatch(dislikeThread(vote));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
@@ -64,6 +67,7 @@ export const asyncNeutralThread = ({ threadId }) => {
 			const vote = await apiServices.neutralThread({ threadId });
 			dispatch(neutralThread(vote));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
@@ -84,6 +88,7 @@ export const asyncLikeComment = ({ threadId, commentId }) => {
 			const vote = await apiServices.likeComment({ threadId, commentId });
 			dispatch(likeComment(vote));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
@@ -104,6 +109,7 @@ export const asyncDislikeComment = ({ threadId, commentId }) => {
 			const vote = await apiServices.dislikeComment({ threadId, commentId });
 			dispatch(dislikeComment(vote));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
@@ -124,6 +130,7 @@ export const asyncNeutralComment = ({ threadId, commentId }) => {
 			const vote = await apiServices.neutralComment({ threadId, commentId });
 			dispatch(neutralComment(vote));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};

@@ -1,4 +1,5 @@
 import apiServices from '../../utlis/apiServices';
+import { setErrorMessage } from '../error/action';
 
 export const actionType = {
 	GET_ALL_THREADS: 'GET_ALL_THREADS',
@@ -21,6 +22,7 @@ export const asyncGetAllThreads = () => {
 			const listThreads = await apiServices.getAllThreads();
 			dispatch(getAllThreads(listThreads));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
@@ -41,6 +43,7 @@ export const asyncAddNewThread = ({ title, body, category }) => {
 			const thread = await apiServices.createThread({ title, body, category });
 			dispatch(addNewThread(thread));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
@@ -62,6 +65,7 @@ export const asyncShowFilteredThreads = ({ category }) => {
 			const filteredThreads = threads.filter((item) => item.category === category);
 			dispatch(showFilteredThreads(filteredThreads));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error);
 		}
 	};

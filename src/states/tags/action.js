@@ -1,4 +1,5 @@
 import apiServices from '../../utlis/apiServices';
+import { setErrorMessage } from '../error/action';
 
 export const actionType = {
 	GET_ALL_TAGS: 'GET_ALL_TAGS',
@@ -28,6 +29,7 @@ export const asyncGetAllTags = () => {
 
 			dispatch(getAllTags(listTags));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error);
 		}
 	};
@@ -49,6 +51,7 @@ export const asyncShowMoreTags = () => {
 			const listTags = threads.map((item) => item?.category);
 			dispatch(getAllTags(listTags));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error);
 		}
 	};

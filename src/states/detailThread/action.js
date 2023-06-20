@@ -1,4 +1,5 @@
 import apiServices from '../../utlis/apiServices';
+import { setErrorMessage } from '../error/action';
 
 export const actionType = {
 	GET_DETAIL_THREAD: 'GET_DETAIL_THREAD',
@@ -19,6 +20,7 @@ export const asyncGetDetailThread = ({ idThread }) => {
 			const detailThread = await apiServices.getThreadDetail(idThread);
 			dispatch(getDetailThread(detailThread));
 		} catch (error) {
+			dispatch(setErrorMessage(error.message));
 			console.log(error.message);
 		}
 	};
