@@ -345,7 +345,7 @@ const apiServices = (() => {
 	}
 
 	async function getAllLeaderboards() {
-		const response = await _fetchWithAuth(`${BASE_URL}/leaderboards`, {
+		const response = await fetch(`${BASE_URL}/leaderboards`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -360,10 +360,10 @@ const apiServices = (() => {
 			throw new Error(message);
 		}
 		const {
-			data: { vote },
+			data: { leaderboards },
 		} = responseJson;
 
-		return vote;
+		return leaderboards;
 	}
 
 	return {

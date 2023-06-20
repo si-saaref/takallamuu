@@ -13,6 +13,7 @@ import Header from '../components/organisms/Header';
 import NewThreadModal from '../components/organisms/NewThreadModal';
 import TagItem from '../components/molecules/TagItem';
 import { asyncGetAllTags, asyncShowMoreTags } from '../states/tags/action';
+import { asyncGetAllLeaderboards } from '../states/leaderboards/action';
 
 export default function HomePage() {
 	const { threads, users, votes, tags, authUser } = useSelector((states) => states);
@@ -26,6 +27,7 @@ export default function HomePage() {
 	useEffect(() => {
 		dispatch(asyncGetAllUsers());
 		dispatch(asyncGetAllThreads());
+		dispatch(asyncGetAllLeaderboards());
 	}, [dispatch, votes]);
 
 	useEffect(() => {
@@ -127,6 +129,18 @@ export default function HomePage() {
 							</aside>
 							<aside className='homepage__sidebar__leaderboard content-container'>
 								<h1>Leaderboard</h1>
+								<div className='homepage__leaderboard__list-wrapper'>
+									<div className='homepage__leaderboard__head leaderboard-content'>
+										<p>No</p>
+										<p>Name</p>
+										<p>Score</p>
+									</div>
+									<div className='homepage__leaderboard__body leaderboard-content'>
+										<p>1</p>
+										<p>John</p>
+										<p>10</p>
+									</div>
+								</div>
 							</aside>
 						</div>
 					</div>
