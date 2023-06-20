@@ -27,13 +27,6 @@ export const asyncGetAllTags = () => {
 
 			apiServices.putToStorage({ keyName: 'listTags', item: listTags });
 
-			console.log(
-				listTags,
-				tagsFromStorage?.length === 0,
-				threads.length > tagsFromStorage?.length,
-				tagsFromStorage
-			);
-
 			dispatch(getAllTags(listTags));
 		} catch (error) {
 			dispatch(setErrorMessage(error.message));

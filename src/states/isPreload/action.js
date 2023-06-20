@@ -18,8 +18,11 @@ export const setIsPreload = (isPreload) => {
 export const asyncSetIsPreload = () => {
 	return async (dispatch) => {
 		try {
-			const authUser = await apiServices.getOwnProfile();
-			dispatch(setLogin(authUser));
+			const accessToken = apiServices.getFromStorage('accessToken');
+			if (accessToken) {
+				const authUser = await apiServices.getOwnProfile();
+				dispatch(setLogin(authUser));
+			}
 		} catch (error) {
 			dispatch(setErrorMessage(error.message));
 			dispatch(setLogin(null));
