@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import DetailPage from './pages/DetailPage';
+import HomePage from './pages/HomePage';
+import './styles/styles.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { asyncSetIsPreload } from './states/isPreload/action';
+import { Toaster } from 'react-hot-toast';
+import NotFound from './pages/NotfOUND';
+import useNotification from './hooks/useNotification';
+import { setErrorMessage } from './states/error/action';
 
 function App() {
-  const [count, setCount] = useState(0)
+	const { isPreload, authUser, errorMessage } = useSelector((states) => states);
+	const dispatch = useDispatch();
+	const notif = useNotification();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	useEffect(() => {
+		dispatch(asyncSetIsPreload());
+	}, [dispatch]);
+
+	useEffect(() => {
+		if (errorMessage) {
+			notif.miniError(errorMessage);
+			dispatch(setErrorMessage(null));
+		}
+	}, [dispatch, notif, errorMessage]);
+
+	if (isPreload && !authUser) {
+		return null;
+	}
+
+	return (
+		<>
+			<div>
+				<Toaster />
+			</div>
+			<main>
+				<Routes>
+					<Route path='/' element={<HomePage />} />
+					<Route path='/thread/:id' element={<DetailPage />} />
+					<Route path='/*' element={<NotFound />} />
+				</Routes>
+			</main>
+		</>
+	);
 }
 
-export default App
+export default App;
