@@ -6,6 +6,7 @@ import {
 	asyncLikeComment,
 	asyncNeutralComment,
 } from '../../states/votes/action';
+import { getDate } from '../../utlis/utils';
 
 export default function ThreadComment({ thread, threadId }) {
 	const { authUser } = useSelector((states) => states);
@@ -35,7 +36,10 @@ export default function ThreadComment({ thread, threadId }) {
 				</div>
 				<div className='comment__content'>
 					<div className='comment__content-section-top'>
-						<p>{thread.owner.name}</p>
+						<div className='comment__content-info'>
+							<p>{thread.owner.name}</p>
+							<p className='comment__content__date'>{getDate(thread.createdAt)}</p>
+						</div>
 						<h1>{parser(thread.content)}</h1>
 					</div>
 					<div className='comment__content-section-bottom'>
