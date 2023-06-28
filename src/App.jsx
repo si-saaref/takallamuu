@@ -1,16 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import DetailPage from './pages/DetailPage';
-import HomePage from './pages/HomePage';
-import './styles/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { asyncSetIsPreload } from './states/isPreload/action';
 import { Toaster } from 'react-hot-toast';
-import NotFound from './pages/NotFound';
 import useNotification from './hooks/useNotification';
+import { asyncSetIsPreload } from './states/isPreload/action';
 import { setErrorMessage } from './states/error/action';
 import Loader from './components/molecules/Loader';
+import HomePage from './pages/HomePage';
+import DetailPage from './pages/DetailPage';
+import NotFound from './pages/NotFound';
+import './App.css';
+import './styles/styles.css';
 
 function App() {
 	const { isPreload, authUser, errorMessage } = useSelector((states) => states);

@@ -42,7 +42,6 @@ export default function ThreadItem({ thread, isDetailPage = false }) {
 
 	const handleCopyLinkThread = () => {
 		const link = isDetailPage ? window.location.href : `${window.location.href}thread/${thread.id}`;
-		console.log(link);
 		navigator.clipboard.writeText(link);
 		notif.miniSuccess('Successfully copied to clipboard');
 	};
@@ -50,61 +49,59 @@ export default function ThreadItem({ thread, isDetailPage = false }) {
 	const contentThread = decodeHTMLEntities(thread.body);
 
 	return (
-		<>
-			<div className='thread-item'>
-				<div className='thread__profile-picture-section'>
-					<img
-						src={thread.owner.avatar}
-						alt={`${thread.owner.name}-avatar`}
-						className='thread__profile-picture-user'
-					/>
+		<div className='thread-item'>
+			<div className='thread__profile-picture-section'>
+				<img
+					src={thread.owner.avatar}
+					alt={`${thread.owner.name}-avatar`}
+					className='thread__profile-picture-user'
+				/>
+			</div>
+			<div className='thread__content-section'>
+				<div className='thread__content-section-top'>
+					<div className='thread__content-info'>
+						<p className='thread__content__username'>{thread.owner.name}</p>
+						<p className='thread__content__date'>{getDate(thread.createdAt)}</p>
+					</div>
+					<Link className='thread__content__title' to={`/thread/${thread.id}`}>
+						{thread.title}
+					</Link>
+					{isHTML(contentThread) ? parse(contentThread) : <p>{contentThread}</p>}
 				</div>
-				<div className='thread__content-section'>
-					<div className='thread__content-section-top'>
-						<div className='thread__content-info'>
-							<p className='thread__content__username'>{thread.owner.name}</p>
-							<p className='thread__content__date'>{getDate(thread.createdAt)}</p>
+				<div className='thread__content-section-bottom'>
+					<div className='thread__content__interactive-wrapper'>
+						<div className='thread__content__interactive__item'>
+							<BsSuitHeartFill
+								onClick={() => handleLikeThread(thread.id)}
+								className={`button__interactive-item ${
+									thread.upVotesBy.includes(authUser?.id) && 'active-vote'
+								}`}
+							/>
+							<p>{thread.upVotesBy.length}</p>
 						</div>
-						<Link className='thread__content__title' to={`/thread/${thread.id}`}>
-							{thread.title}
-						</Link>
-						{isHTML(contentThread) ? parse(contentThread) : <p>{contentThread}</p>}
-					</div>
-					<div className='thread__content-section-bottom'>
-						<div className='thread__content__interactive-wrapper'>
-							<div className='thread__content__interactive__item'>
-								<BsSuitHeartFill
-									onClick={() => handleLikeThread(thread.id)}
-									className={`button__interactive-item ${
-										thread.upVotesBy.includes(authUser?.id) && 'active-vote'
-									}`}
-								/>
-								<p>{thread.upVotesBy.length}</p>
-							</div>
-							<div className='thread__content__interactive__item'>
-								<BsHeartbreakFill
-									onClick={() => handleDislikeThread(thread.id)}
-									className={`button__interactive-item ${
-										thread.downVotesBy.includes(authUser?.id) && 'active-vote'
-									}`}
-								/>
-								<p>{thread.downVotesBy.length}</p>
-							</div>
-							<div className='thread__content__interactive__item'>
-								<ImReply
-									className='button__interactive-item'
-									onClick={() => navigate(`/thread/${thread.id}`)}
-								/>
-								<p>{thread.totalComments ?? thread.comments.length}</p>
-							</div>
-							<div className='thread__content__interactive__item'>
-								<FaLink className='button__interactive-item' onClick={handleCopyLinkThread} />
-							</div>
+						<div className='thread__content__interactive__item'>
+							<BsHeartbreakFill
+								onClick={() => handleDislikeThread(thread.id)}
+								className={`button__interactive-item ${
+									thread.downVotesBy.includes(authUser?.id) && 'active-vote'
+								}`}
+							/>
+							<p>{thread.downVotesBy.length}</p>
 						</div>
-						<TagItem title={thread.category} clickable={false} />
+						<div className='thread__content__interactive__item'>
+							<ImReply
+								className='button__interactive-item'
+								onClick={() => navigate(`/thread/${thread.id}`)}
+							/>
+							<p>{thread.totalComments ?? thread.comments.length}</p>
+						</div>
+						<div className='thread__content__interactive__item'>
+							<FaLink className='button__interactive-item' onClick={handleCopyLinkThread} />
+						</div>
 					</div>
+					<TagItem title={thread.category} clickable={false} />
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

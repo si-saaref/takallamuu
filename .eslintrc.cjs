@@ -5,6 +5,8 @@ module.exports = {
 		'plugin:react/recommended',
 		'plugin:react/jsx-runtime',
 		'plugin:react-hooks/recommended',
+		'airbnb',
+		'prettier',
 	],
 	parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
 	settings: { react: { version: '18.2' } },
@@ -12,5 +14,8 @@ module.exports = {
 	rules: {
 		'react-refresh/only-export-components': 'warn',
 		'react/prop-types': 0,
+		'react/react-in-jsx-scope': 'off',
+		'no-underscore-dangle': ['error', { allow: ['_action', '_fetchWithAuth'] }],
+		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 	},
 };

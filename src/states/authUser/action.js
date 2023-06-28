@@ -7,39 +7,16 @@ export const actionType = {
 	LOGOUT: 'LOGOUT',
 };
 
-export const setRegister = (authUser) => {
-	return {
-		type: actionType.REGISTER,
-		payload: {
-			authUser,
-		},
-	};
-};
+export const setLogin = (authUser) => ({
+	type: actionType.LOGIN,
+	payload: {
+		authUser,
+	},
+});
 
-export const asyncSetRegister = ({ name, email, password }) => {
-	return async (dispatch) => {
-		try {
-			const authUser = await apiServices.register({ email, name, password });
-			dispatch(asyncSetLogin({ email, password }));
-			dispatch(setRegister(authUser));
-		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
-		}
-	};
-};
-
-export const setLogin = (authUser) => {
-	return {
-		type: actionType.LOGIN,
-		payload: {
-			authUser,
-		},
-	};
-};
-
-export const asyncSetLogin = ({ email, password }) => {
-	return async (dispatch) => {
+export const asyncSetLogin =
+	({ email, password }) =>
+	async (dispatch) => {
 		try {
 			const token = await apiServices.login({ email, password });
 			apiServices.putToStorage({ keyName: 'accessToken', item: token });
@@ -47,28 +24,40 @@ export const asyncSetLogin = ({ email, password }) => {
 			dispatch(setLogin(authUser));
 		} catch (error) {
 			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
 		}
 	};
-};
 
-export const setLogout = () => {
-	return {
-		type: actionType.LOGOUT,
-		payload: {
-			authUser: null,
-		},
-	};
-};
+export const setRegister = (authUser) => ({
+	type: actionType.REGISTER,
+	payload: {
+		authUser,
+	},
+});
 
-export const asyncSetLogout = () => {
-	return async (dispatch) => {
+export const asyncSetRegister =
+	({ name, email, password }) =>
+	async (dispatch) => {
 		try {
-			apiServices.removeFromStorage('accessToken');
-			dispatch(setLogout());
+			const authUser = await apiServices.register({ email, name, password });
+			dispatch(asyncSetLogin({ email, password }));
+			dispatch(setRegister(authUser));
 		} catch (error) {
 			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
 		}
 	};
+
+export const setLogout = () => ({
+	type: actionType.LOGOUT,
+	payload: {
+		authUser: null,
+	},
+});
+
+export const asyncSetLogout = () => async (dispatch) => {
+	try {
+		apiServices.removeFromStorage('accessToken');
+		dispatch(setLogout());
+	} catch (error) {
+		dispatch(setErrorMessage(error.message));
+	}
 };

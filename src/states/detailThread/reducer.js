@@ -2,9 +2,7 @@ import { actionType } from './action';
 
 export default function detailThreadReducer(state = {}, action = []) {
 	const _action = {
-		[actionType.GET_DETAIL_THREAD]: () => {
-			return action.payload.detailThread;
-		},
+		[actionType.GET_DETAIL_THREAD]: () => action.payload.detailThread,
 		DEFAULT: () => state,
 	};
 

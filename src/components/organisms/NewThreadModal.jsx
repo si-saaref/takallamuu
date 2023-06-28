@@ -56,7 +56,7 @@ export default function NewThreadModal({
 						rows='10'
 						value={content}
 						onChange={handleChangeContent}
-					></textarea>
+					/>
 					<button
 						type='button'
 						className='form__button button-login'

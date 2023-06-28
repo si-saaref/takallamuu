@@ -1,16 +1,10 @@
-import { actionType } from '../authUser/action';
+import { actionType } from './action';
 
 export default function authUserReducer(state = null, action = {}) {
 	const _action = {
-		[actionType.REGISTER]: () => {
-			return action.payload.authUser;
-		},
-		[actionType.LOGIN]: () => {
-			return action.payload.authUser;
-		},
-		[actionType.LOGOUT]: () => {
-			return action.payload.authUser;
-		},
+		[actionType.REGISTER]: () => action.payload.authUser,
+		[actionType.LOGIN]: () => action.payload.authUser,
+		[actionType.LOGOUT]: () => action.payload.authUser,
 		DEFAULT: () => state,
 	};
 

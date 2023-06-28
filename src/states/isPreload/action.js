@@ -7,30 +7,26 @@ export const actionType = {
 	IS_PRELOAD: 'IS_PRELOAD',
 };
 
-export const setIsPreload = (isPreload) => {
-	return {
-		type: actionType.IS_PRELOAD,
-		payload: {
-			isPreload,
-		},
-	};
-};
+export const setIsPreload = (isPreload) => ({
+	type: actionType.IS_PRELOAD,
+	payload: {
+		isPreload,
+	},
+});
 
-export const asyncSetIsPreload = () => {
-	return async (dispatch) => {
-		dispatch(showLoading());
-		try {
-			const accessToken = apiServices.getFromStorage('accessToken');
-			if (accessToken) {
-				const authUser = await apiServices.getOwnProfile();
-				dispatch(setLogin(authUser));
-			}
-		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			dispatch(setLogin(null));
-		} finally {
-			dispatch(setIsPreload(false));
+export const asyncSetIsPreload = () => async (dispatch) => {
+	dispatch(showLoading());
+	try {
+		const accessToken = apiServices.getFromStorage('accessToken');
+		if (accessToken) {
+			const authUser = await apiServices.getOwnProfile();
+			dispatch(setLogin(authUser));
 		}
-		dispatch(hideLoading());
-	};
+	} catch (error) {
+		dispatch(setErrorMessage(error.message));
+		dispatch(setLogin(null));
+	} finally {
+		dispatch(setIsPreload(false));
+	}
+	dispatch(hideLoading());
 };

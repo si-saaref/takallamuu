@@ -10,8 +10,8 @@ export default function Modal({ isOpenModal, setOpenModal, title, children }) {
 			className='modal'
 			overlayClassName='overlay-modal'
 			onRequestClose={() => setOpenModal(false)}
-			shouldCloseOnOverlayClick={true}
-			shouldCloseOnEsc={true}
+			shouldCloseOnOverlayClick
+			shouldCloseOnEsc
 		>
 			<div className='modal-container'>
 				<div className='modal__description'>

@@ -74,7 +74,7 @@ export default function HomePage() {
 
 	return (
 		<>
-			<Header isLarege={true} />
+			<Header isLarege />
 			<main>
 				<div className='homepage container'>
 					<div className='container-double'>
@@ -83,6 +83,7 @@ export default function HomePage() {
 								<h1>Explore</h1>
 								{authUser && (
 									<button
+										type='button'
 										className='homepage__button-add-thread'
 										onClick={() => setIsOpenModalThread(true)}
 									>
@@ -110,10 +111,10 @@ export default function HomePage() {
 							>
 								<h1>Trending Category</h1>
 								<div className='homepage__trending__list-tag-wrapper'>
-									{tags.map((item, idx) => (
+									{tags.map((item) => (
 										<TagItem
 											title={item}
-											key={idx}
+											key={item}
 											onClick={() => handleShowThreadByCategory(item)}
 											selectedCategory={selectedCategory}
 										/>
@@ -121,6 +122,7 @@ export default function HomePage() {
 								</div>
 								{tags.length >= 7 && (
 									<button
+										type='button'
 										className='homepage__trending__show-more-button'
 										onClick={handleShowFullTags}
 									>
@@ -137,7 +139,7 @@ export default function HomePage() {
 										<p>Score</p>
 									</div>
 									{leaderboards.map((item, idx) => (
-										<div className='homepage__leaderboard__body leaderboard-content' key={idx}>
+										<div className='homepage__leaderboard__body leaderboard-content' key={item.id}>
 											<p>{idx + 1}</p>
 											<p>{item.user.name}</p>
 											<p>{item.score}</p>
