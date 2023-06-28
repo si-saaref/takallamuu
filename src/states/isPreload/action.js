@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setLogin } from '../authUser/action';
 import { setErrorMessage } from '../error/action';
@@ -17,6 +18,7 @@ export const setIsPreload = (isPreload) => {
 
 export const asyncSetIsPreload = () => {
 	return async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const accessToken = apiServices.getFromStorage('accessToken');
 			if (accessToken) {
@@ -29,5 +31,6 @@ export const asyncSetIsPreload = () => {
 		} finally {
 			dispatch(setIsPreload(false));
 		}
+		dispatch(hideLoading());
 	};
 };

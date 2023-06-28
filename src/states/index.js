@@ -9,6 +9,7 @@ import votesThreadReducer from './votes/reducer';
 import tagsReducer from './tags/reducer';
 import errorMessageReducer from './error/reducer';
 import leaderboardsReducer from './leaderboards/reducer';
+import { loadingBarReducer } from 'react-redux-loading-bar';
 
 export const store = configureStore({
 	reducer: {
@@ -22,5 +23,6 @@ export const store = configureStore({
 		tags: tagsReducer,
 		errorMessage: errorMessageReducer,
 		leaderboards: leaderboardsReducer,
+		loadingBar: loadingBarReducer,
 	},
 });
