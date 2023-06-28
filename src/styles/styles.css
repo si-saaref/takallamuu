@@ -226,8 +226,18 @@
 	padding: 0.4rem 0;
 }
 
+.thread__content-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .thread__content__username {
 	font-size: 1.15rem;
+}
+
+.thread__content__date {
+	font-size: 0.9rem;
 }
 
 .thread__content__title {

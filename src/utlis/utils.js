@@ -19,3 +19,10 @@ export const decodeHTMLEntities = (text) => {
 };
 
 export const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
+
+export const getDate = (date) =>
+	new Date(date).toLocaleDateString('id-ID', {
+		month: 'short',
+		year: 'numeric',
+		day: 'numeric',
+	});

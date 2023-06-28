@@ -5,7 +5,7 @@ import { FaLink } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import parse from 'html-react-parser';
-import { decodeHTMLEntities, isHTML } from '../../utlis/utils';
+import { decodeHTMLEntities, getDate, isHTML } from '../../utlis/utils';
 import { asyncDislikeThread, asyncLikeThread, asyncNeutralThread } from '../../states/votes/action';
 import TagItem from './TagItem';
 import useNotification from '../../hooks/useNotification';
@@ -61,7 +61,10 @@ export default function ThreadItem({ thread, isDetailPage = false }) {
 				</div>
 				<div className='thread__content-section'>
 					<div className='thread__content-section-top'>
-						<p className='thread__content__username'>{thread.owner.name}</p>
+						<div className='thread__content-info'>
+							<p className='thread__content__username'>{thread.owner.name}</p>
+							<p className='thread__content__date'>{getDate(thread.createdAt)}</p>
+						</div>
 						<Link className='thread__content__title' to={`/thread/${thread.id}`}>
 							{thread.title}
 						</Link>
