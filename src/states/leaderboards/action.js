@@ -17,6 +17,11 @@ export const asyncGetAllLeaderboards = () => async (dispatch) => {
 		const leaderboards = await apiServices.getAllLeaderboards();
 		dispatch(getAllLeaderboards(leaderboards));
 	} catch (error) {
-		dispatch(setErrorMessage(error.message));
+		dispatch(
+			setErrorMessage({
+				message: error.message,
+				actionType: actionType.GET_ALL_LEADERBOARDS,
+			})
+		);
 	}
 };

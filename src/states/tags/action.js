@@ -26,7 +26,12 @@ export const asyncGetAllTags = () => async (dispatch, getState) => {
 
 		dispatch(getAllTags(listTags));
 	} catch (error) {
-		dispatch(setErrorMessage(error.message));
+		dispatch(
+			setErrorMessage({
+				message: error.message,
+				actionType: actionType.GET_ALL_TAGS,
+			})
+		);
 	}
 };
 
@@ -43,6 +48,11 @@ export const asyncShowMoreTags = () => async (dispatch, getState) => {
 		const listTags = threads.map((item) => item?.category);
 		dispatch(getAllTags(listTags));
 	} catch (error) {
-		dispatch(setErrorMessage(error.message));
+		dispatch(
+			setErrorMessage({
+				message: error.message,
+				actionType: actionType.SHOW_MORE_TAGS,
+			})
+		);
 	}
 };

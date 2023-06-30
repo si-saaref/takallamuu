@@ -23,7 +23,12 @@ export const asyncSetLogin =
 			const authUser = await apiServices.getOwnProfile();
 			dispatch(setLogin(authUser));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.LOGIN,
+				})
+			);
 		}
 	};
 
@@ -42,7 +47,12 @@ export const asyncSetRegister =
 			dispatch(asyncSetLogin({ email, password }));
 			dispatch(setRegister(authUser));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.REGISTER,
+				})
+			);
 		}
 	};
 
@@ -58,6 +68,11 @@ export const asyncSetLogout = () => async (dispatch) => {
 		apiServices.removeFromStorage('accessToken');
 		dispatch(setLogout());
 	} catch (error) {
-		dispatch(setErrorMessage(error.message));
+		dispatch(
+			setErrorMessage({
+				message: error.message,
+				actionType: actionType.LOGOUT,
+			})
+		);
 	}
 };

@@ -17,6 +17,11 @@ export const asyncGetAllUsers = () => async (dispatch) => {
 		const listUsers = await apiServices.getAllUsers();
 		dispatch(getAllUsers(listUsers));
 	} catch (error) {
-		dispatch(setErrorMessage(error.message));
+		dispatch(
+			setErrorMessage({
+				message: error.message,
+				actionType: actionType.GET_ALL_USERS,
+			})
+		);
 	}
 };

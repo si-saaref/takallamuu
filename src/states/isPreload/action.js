@@ -23,8 +23,13 @@ export const asyncSetIsPreload = () => async (dispatch) => {
 			dispatch(setLogin(authUser));
 		}
 	} catch (error) {
-		dispatch(setErrorMessage(error.message));
 		dispatch(setLogin(null));
+		dispatch(
+			setErrorMessage({
+				message: error.message,
+				actionType: actionType.IS_PRELOAD,
+			})
+		);
 	} finally {
 		dispatch(setIsPreload(false));
 	}

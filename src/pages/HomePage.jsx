@@ -111,10 +111,10 @@ export default function HomePage() {
 							>
 								<h1>Trending Category</h1>
 								<div className='homepage__trending__list-tag-wrapper'>
-									{tags.map((item) => (
+									{tags.map((item, idx) => (
 										<TagItem
 											title={item}
-											key={item}
+											key={`${item}-${idx + 1}`}
 											onClick={() => handleShowThreadByCategory(item)}
 											selectedCategory={selectedCategory}
 										/>
@@ -139,7 +139,10 @@ export default function HomePage() {
 										<p>Score</p>
 									</div>
 									{leaderboards.map((item, idx) => (
-										<div className='homepage__leaderboard__body leaderboard-content' key={item.id}>
+										<div
+											className='homepage__leaderboard__body leaderboard-content'
+											key={item.user.id}
+										>
 											<p>{idx + 1}</p>
 											<p>{item.user.name}</p>
 											<p>{item.score}</p>

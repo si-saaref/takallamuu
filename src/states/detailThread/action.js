@@ -19,6 +19,11 @@ export const asyncGetDetailThread =
 			const detailThread = await apiServices.getThreadDetail(idThread);
 			dispatch(getDetailThread(detailThread));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.GET_DETAIL_THREAD,
+				})
+			);
 		}
 	};

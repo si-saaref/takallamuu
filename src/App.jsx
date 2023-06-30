@@ -8,6 +8,7 @@ import { setErrorMessage } from './states/error/action';
 import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
 import NotFound from './pages/NotFound';
+import Loader from './components/molecules/Loader';
 import './App.css';
 import './styles/styles.css';
 
@@ -22,7 +23,7 @@ function App() {
 
 	useEffect(() => {
 		if (errorMessage) {
-			notif.miniError(errorMessage);
+			notif.miniError(errorMessage.message);
 			dispatch(setErrorMessage(null));
 		}
 	}, [dispatch, notif, errorMessage]);
@@ -36,6 +37,7 @@ function App() {
 			<div>
 				<Toaster />
 			</div>
+			<Loader />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
 				<Route path='/thread/:id' element={<DetailPage />} />

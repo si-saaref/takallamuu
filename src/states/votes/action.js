@@ -24,7 +24,12 @@ export const asyncLikeThread =
 			const vote = await apiServices.likeThread({ threadId });
 			dispatch(likeThread(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.LIKE_THREAD,
+				})
+			);
 		}
 	};
 
@@ -42,7 +47,12 @@ export const asyncDislikeThread =
 			const vote = await apiServices.dislikeThread({ threadId });
 			dispatch(dislikeThread(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.DISLIKE_THREAD,
+				})
+			);
 		}
 	};
 
@@ -60,7 +70,12 @@ export const asyncNeutralThread =
 			const vote = await apiServices.neutralThread({ threadId });
 			dispatch(neutralThread(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.NEUTRAL_THREAD,
+				})
+			);
 		}
 	};
 
@@ -78,7 +93,12 @@ export const asyncLikeComment =
 			const vote = await apiServices.likeComment({ threadId, commentId });
 			dispatch(likeComment(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.LIKE_COMMENT,
+				})
+			);
 		}
 	};
 
@@ -96,7 +116,12 @@ export const asyncDislikeComment =
 			const vote = await apiServices.dislikeComment({ threadId, commentId });
 			dispatch(dislikeComment(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.DISLIKE_COMMENT,
+				})
+			);
 		}
 	};
 
@@ -114,6 +139,11 @@ export const asyncNeutralComment =
 			const vote = await apiServices.neutralComment({ threadId, commentId });
 			dispatch(neutralComment(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.NEUTRAL_COMMENT,
+				})
+			);
 		}
 	};

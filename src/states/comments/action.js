@@ -19,6 +19,11 @@ export const asyncAddCommentThread =
 			const comment = await apiServices.addComment({ threadId, content });
 			dispatch(addCommentThread(comment));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.ADD_COMMENT,
+				})
+			);
 		}
 	};

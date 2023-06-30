@@ -19,7 +19,12 @@ export const asyncGetAllThreads = () => async (dispatch) => {
 		const listThreads = await apiServices.getAllThreads();
 		dispatch(getAllThreads(listThreads));
 	} catch (error) {
-		dispatch(setErrorMessage(error.message));
+		dispatch(
+			setErrorMessage({
+				message: error.message,
+				actionType: actionType.GET_ALL_THREADS,
+			})
+		);
 	}
 };
 
@@ -37,7 +42,12 @@ export const asyncAddNewThread =
 			const thread = await apiServices.createThread({ title, body, category });
 			dispatch(addNewThread(thread));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.ADD_NEW_THREAD,
+				})
+			);
 		}
 	};
 
@@ -56,6 +66,11 @@ export const asyncShowFilteredThreads =
 			const filteredThreads = threads.filter((item) => item.category === category);
 			dispatch(showFilteredThreads(filteredThreads));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.SHOW_FILTERED_THREADS,
+				})
+			);
 		}
 	};
