@@ -5,7 +5,6 @@ import { Toaster } from 'react-hot-toast';
 import useNotification from './hooks/useNotification';
 import { asyncSetIsPreload } from './states/isPreload/action';
 import { setErrorMessage } from './states/error/action';
-import Loader from './components/molecules/Loader';
 import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
 import NotFound from './pages/NotFound';
@@ -37,14 +36,11 @@ function App() {
 			<div>
 				<Toaster />
 			</div>
-			<Loader />
-			<main>
-				<Routes>
-					<Route path='/' element={<HomePage />} />
-					<Route path='/thread/:id' element={<DetailPage />} />
-					<Route path='/*' element={<NotFound />} />
-				</Routes>
-			</main>
+			<Routes>
+				<Route path='/' element={<HomePage />} />
+				<Route path='/thread/:id' element={<DetailPage />} />
+				<Route path='/*' element={<NotFound />} />
+			</Routes>
 		</>
 	);
 }
