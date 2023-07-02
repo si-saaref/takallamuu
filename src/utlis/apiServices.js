@@ -1,16 +1,22 @@
 const apiServices = (() => {
 	const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
+	function removeFromStorage(keyName) {
+		return localStorage.removeItem(keyName);
+	}
+
 	function getFromStorage(keyName) {
-		return JSON.parse(localStorage.getItem(keyName));
+		let data;
+		try {
+			data = JSON.parse(localStorage.getItem(keyName));
+		} catch (error) {
+			removeFromStorage(keyName);
+		}
+		return data;
 	}
 
 	function putToStorage({ keyName, item }) {
 		localStorage.setItem(keyName, JSON.stringify(item));
-	}
-
-	function removeFromStorage(keyName) {
-		return localStorage.removeItem(keyName);
 	}
 
 	async function _fetchWithAuth(url, options = {}) {
