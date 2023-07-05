@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -15,6 +16,7 @@ export const addCommentThread = (comment) => ({
 export const asyncAddCommentThread =
 	({ threadId, content }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const comment = await apiServices.addComment({ threadId, content });
 			dispatch(addCommentThread(comment));
@@ -26,4 +28,5 @@ export const asyncAddCommentThread =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};

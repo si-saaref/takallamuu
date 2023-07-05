@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -13,6 +14,7 @@ export const getAllLeaderboards = (leaderboards) => ({
 });
 
 export const asyncGetAllLeaderboards = () => async (dispatch) => {
+	dispatch(showLoading());
 	try {
 		const leaderboards = await apiServices.getAllLeaderboards();
 		dispatch(getAllLeaderboards(leaderboards));
@@ -24,4 +26,5 @@ export const asyncGetAllLeaderboards = () => async (dispatch) => {
 			})
 		);
 	}
+	dispatch(hideLoading());
 };

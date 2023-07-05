@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -15,6 +16,7 @@ export const getDetailThread = (detailThread) => ({
 export const asyncGetDetailThread =
 	({ idThread }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const detailThread = await apiServices.getThreadDetail(idThread);
 			dispatch(getDetailThread(detailThread));
@@ -26,4 +28,5 @@ export const asyncGetDetailThread =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};

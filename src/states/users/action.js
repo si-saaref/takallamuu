@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -13,6 +14,7 @@ export const getAllUsers = (users) => ({
 });
 
 export const asyncGetAllUsers = () => async (dispatch) => {
+	dispatch(showLoading());
 	try {
 		const listUsers = await apiServices.getAllUsers();
 		dispatch(getAllUsers(listUsers));
@@ -24,4 +26,5 @@ export const asyncGetAllUsers = () => async (dispatch) => {
 			})
 		);
 	}
+	dispatch(hideLoading());
 };

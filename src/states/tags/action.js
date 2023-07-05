@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -14,6 +15,7 @@ export const getAllTags = (tags) => ({
 });
 
 export const asyncGetAllTags = () => async (dispatch, getState) => {
+	dispatch(showLoading());
 	try {
 		const { threads } = getState();
 		const tagsFromStorage = apiServices.getFromStorage('listTags') || [];
@@ -33,6 +35,7 @@ export const asyncGetAllTags = () => async (dispatch, getState) => {
 			})
 		);
 	}
+	dispatch(hideLoading());
 };
 
 export const showMoreTags = (tags) => ({
@@ -43,6 +46,7 @@ export const showMoreTags = (tags) => ({
 });
 
 export const asyncShowMoreTags = () => async (dispatch, getState) => {
+	dispatch(showLoading());
 	try {
 		const { threads } = getState();
 		const listTags = threads.map((item) => item?.category);
@@ -55,4 +59,5 @@ export const asyncShowMoreTags = () => async (dispatch, getState) => {
 			})
 		);
 	}
+	dispatch(hideLoading());
 };

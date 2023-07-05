@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -17,6 +18,7 @@ export const setLogin = (authUser) => ({
 export const asyncSetLogin =
 	({ email, password }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const token = await apiServices.login({ email, password });
 			apiServices.putToStorage({ keyName: 'accessToken', item: token });
@@ -30,6 +32,7 @@ export const asyncSetLogin =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const setRegister = (authUser) => ({
@@ -42,6 +45,7 @@ export const setRegister = (authUser) => ({
 export const asyncSetRegister =
 	({ name, email, password }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const authUser = await apiServices.register({ email, name, password });
 			dispatch(asyncSetLogin({ email, password }));
@@ -54,6 +58,7 @@ export const asyncSetRegister =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const setLogout = () => ({
@@ -64,6 +69,7 @@ export const setLogout = () => ({
 });
 
 export const asyncSetLogout = () => async (dispatch) => {
+	dispatch(showLoading());
 	try {
 		apiServices.removeFromStorage('accessToken');
 		dispatch(setLogout());
@@ -75,4 +81,5 @@ export const asyncSetLogout = () => async (dispatch) => {
 			})
 		);
 	}
+	dispatch(hideLoading());
 };

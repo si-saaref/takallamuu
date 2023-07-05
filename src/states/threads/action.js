@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -15,6 +16,7 @@ export const getAllThreads = (threads) => ({
 });
 
 export const asyncGetAllThreads = () => async (dispatch) => {
+	dispatch(showLoading());
 	try {
 		const listThreads = await apiServices.getAllThreads();
 		dispatch(getAllThreads(listThreads));
@@ -26,6 +28,7 @@ export const asyncGetAllThreads = () => async (dispatch) => {
 			})
 		);
 	}
+	dispatch(hideLoading());
 };
 
 export const addNewThread = (thread) => ({
@@ -38,6 +41,7 @@ export const addNewThread = (thread) => ({
 export const asyncAddNewThread =
 	({ title, body, category }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const thread = await apiServices.createThread({ title, body, category });
 			dispatch(addNewThread(thread));
@@ -49,6 +53,7 @@ export const asyncAddNewThread =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const showFilteredThreads = (threads) => ({
@@ -61,6 +66,7 @@ export const showFilteredThreads = (threads) => ({
 export const asyncShowFilteredThreads =
 	({ category }) =>
 	async (dispatch, getState) => {
+		dispatch(showLoading());
 		try {
 			const { threads } = getState();
 			const filteredThreads = threads.filter((item) => item.category === category);
@@ -73,4 +79,5 @@ export const asyncShowFilteredThreads =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};

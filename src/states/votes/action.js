@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -20,6 +21,7 @@ export const likeThread = (vote) => ({
 export const asyncLikeThread =
 	({ threadId }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.likeThread({ threadId });
 			dispatch(likeThread(vote));
@@ -31,6 +33,7 @@ export const asyncLikeThread =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const dislikeThread = (vote) => ({
@@ -43,6 +46,7 @@ export const dislikeThread = (vote) => ({
 export const asyncDislikeThread =
 	({ threadId }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.dislikeThread({ threadId });
 			dispatch(dislikeThread(vote));
@@ -54,6 +58,7 @@ export const asyncDislikeThread =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const neutralThread = (vote) => ({
@@ -66,6 +71,7 @@ export const neutralThread = (vote) => ({
 export const asyncNeutralThread =
 	({ threadId }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.neutralThread({ threadId });
 			dispatch(neutralThread(vote));
@@ -77,6 +83,7 @@ export const asyncNeutralThread =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const likeComment = (vote) => ({
@@ -89,6 +96,7 @@ export const likeComment = (vote) => ({
 export const asyncLikeComment =
 	({ threadId, commentId }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.likeComment({ threadId, commentId });
 			dispatch(likeComment(vote));
@@ -100,6 +108,7 @@ export const asyncLikeComment =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const dislikeComment = (vote) => ({
@@ -112,6 +121,7 @@ export const dislikeComment = (vote) => ({
 export const asyncDislikeComment =
 	({ threadId, commentId }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.dislikeComment({ threadId, commentId });
 			dispatch(dislikeComment(vote));
@@ -123,6 +133,7 @@ export const asyncDislikeComment =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
 
 export const neutralComment = (vote) => ({
@@ -135,6 +146,7 @@ export const neutralComment = (vote) => ({
 export const asyncNeutralComment =
 	({ threadId, commentId }) =>
 	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.neutralComment({ threadId, commentId });
 			dispatch(neutralComment(vote));
@@ -146,4 +158,5 @@ export const asyncNeutralComment =
 				})
 			);
 		}
+		dispatch(hideLoading());
 	};
