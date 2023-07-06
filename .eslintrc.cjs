@@ -15,8 +15,9 @@ module.exports = {
 		'react-refresh/only-export-components': 'warn',
 		'react/prop-types': 0,
 		'react/react-in-jsx-scope': 'off',
-		'no-underscore-dangle': ['error', { allow: ['_action', '_fetchWithAuth'] }],
+		// 'no-underscore-dangle': ['error', { allow: ['_action', '_fetchWithAuth'] }],
 		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 		'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+		'no-underscore-dangle': 0,
 	},
 };
