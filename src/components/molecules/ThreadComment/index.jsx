@@ -5,8 +5,8 @@ import {
 	asyncDislikeComment,
 	asyncLikeComment,
 	asyncNeutralComment,
-} from '../../states/votes/action';
-import { getDate } from '../../utlis/utils';
+} from '../../../states/votes/action';
+import { getDate } from '../../../utlis/utils';
 
 export default function ThreadComment({ thread, threadId }) {
 	const { authUser } = useSelector((states) => states);

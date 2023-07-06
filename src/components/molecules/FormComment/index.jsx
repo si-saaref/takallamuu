@@ -1,4 +1,4 @@
-import useInput from '../../hooks/useInput';
+import useInput from '../../../hooks/useInput';
 
 export default function FormComment({ onReplyThread, replyTo }) {
 	const [comment, handleChangeComment, setValueComment] = useInput('');

@@ -5,10 +5,14 @@ import { FaLink } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import parse from 'html-react-parser';
-import { decodeHTMLEntities, getDate, isHTML } from '../../utlis/utils';
-import { asyncDislikeThread, asyncLikeThread, asyncNeutralThread } from '../../states/votes/action';
-import TagItem from './TagItem';
-import useNotification from '../../hooks/useNotification';
+import { decodeHTMLEntities, getDate, isHTML } from '../../../utlis/utils';
+import {
+	asyncDislikeThread,
+	asyncLikeThread,
+	asyncNeutralThread,
+} from '../../../states/votes/action';
+import TagItem from '../TagItem';
+import useNotification from '../../../hooks/useNotification';
 
 export default function ThreadItem({ thread, isDetailPage = false }) {
 	const { authUser } = useSelector((states) => states);

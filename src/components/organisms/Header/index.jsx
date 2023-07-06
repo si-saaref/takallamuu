@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { RiLogoutBoxLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../states/authUser/action';
-import LoginModal from './LoginModal';
-import RegisterModal from './RegisterModal';
+import { asyncSetLogin, asyncSetLogout, asyncSetRegister } from '../../../states/authUser/action';
+import LoginModal from '../LoginModal';
+import RegisterModal from '../RegisterModal';
 
 export default function Header({ isLarege = false }) {
 	const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);

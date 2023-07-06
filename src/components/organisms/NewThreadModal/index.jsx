@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import useInput from '../../hooks/useInput';
-import Modal from '../molecules/Modal';
+import useInput from '../../../hooks/useInput';
+import Modal from '../../molecules/Modal';
 
 export default function NewThreadModal({
 	isOpenModal = false,

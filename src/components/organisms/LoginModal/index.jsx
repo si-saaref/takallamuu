@@ -1,26 +1,15 @@
-import useInput from '../../hooks/useInput';
-import Modal from '../molecules/Modal';
+import { Link } from 'react-router-dom';
+import useInput from '../../../hooks/useInput';
+import Modal from '../../molecules/Modal';
 
-export default function RegisterModal({ handleRegister, isOpenModal = false, setOpenModal }) {
-	const [name, handleChangeName] = useInput('');
+export default function LoginModal({ handleLogin, isOpenModal = false, setOpenModal }) {
 	const [email, handleChangeEmail] = useInput('');
 	const [password, handleChangePassword] = useInput('');
 
 	return (
-		<Modal isOpenModal={isOpenModal} setOpenModal={setOpenModal} title='Register'>
-			<div className='modal-register'>
+		<Modal isOpenModal={isOpenModal} setOpenModal={setOpenModal} title='Login'>
+			<div className='modal-login'>
 				<form className='form-container'>
-					<div className='form__input-wrapper'>
-						<input
-							type='text'
-							name='name'
-							id='name-input'
-							placeholder='Name'
-							value={name}
-							autoComplete='off'
-							onChange={handleChangeName}
-						/>
-					</div>
 					<div className='form__input-wrapper'>
 						<input
 							type='text'
@@ -45,12 +34,16 @@ export default function RegisterModal({ handleRegister, isOpenModal = false, set
 					</div>
 					<button
 						type='button'
-						className='form__button button-register'
-						onClick={() => handleRegister({ email, password, name })}
+						className='form__button button-login'
+						onClick={() => handleLogin({ email, password })}
 					>
-						Register
+						Login
 					</button>
 				</form>
+				<div className='register-info-wrapper'>
+					<p>Don&apos;t have an account?</p>
+					<Link to='/register'>Sign Up</Link>
+				</div>
 			</div>
 		</Modal>
 	);
