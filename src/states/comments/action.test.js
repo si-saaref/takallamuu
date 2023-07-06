@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { addCommentThread, asyncAddCommentThread } from './action';
+import { setErrorMessage } from '../error/action';
 
 const fakeCreateCommentResponse = [
 	{
@@ -19,7 +20,7 @@ const fakeCreateCommentResponse = [
 	},
 ];
 
-// const fakeErrorResponse = new Error('Ups, something went wrong');
+const fakeErrorResponse = new Error('"content" is not allowed to be empty');
 
 describe('Testing comment on thread action', () => {
 	beforeEach(() => {
@@ -37,10 +38,27 @@ describe('Testing comment on thread action', () => {
 
 		const dispatch = vi.fn();
 
-		await asyncAddCommentThread({ threadId: 1, content: '' })(dispatch);
+		await asyncAddCommentThread({ threadId: 1, content: 'Testing' })(dispatch);
 
 		expect(dispatch).toHaveBeenCalledWith(showLoading());
 		expect(dispatch).toHaveBeenCalledWith(addCommentThread(fakeCreateCommentResponse));
+		expect(dispatch).toHaveBeenCalledWith(hideLoading());
+	});
+
+	it('Shoudl dispatch action and call alert correctly when data fetching failed', async () => {
+		apiServices.addComment = () => Promise.reject(fakeErrorResponse);
+
+		const dispatch = vi.fn();
+
+		await asyncAddCommentThread({ threadId: 1, content: '' })(dispatch);
+
+		expect(dispatch).toHaveBeenCalledWith(showLoading());
+		expect(dispatch).toHaveBeenCalledWith(
+			setErrorMessage({
+				message: fakeErrorResponse.message,
+				actionType: 'ADD_COMMENT',
+			})
+		);
 		expect(dispatch).toHaveBeenCalledWith(hideLoading());
 	});
 });
