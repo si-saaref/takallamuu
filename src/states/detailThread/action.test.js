@@ -2,6 +2,7 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import apiServices from '../../utlis/apiServices';
 import { asyncGetDetailThread, getDetailThread } from './action';
+import { setErrorMessage } from '../error/action';
 
 const fakeDetaDetaiThreadResponse = {
 	id: 'thread-124',
@@ -32,7 +33,7 @@ describe('Testing comment on thread action', () => {
 		delete apiServices._getThreadDetail;
 	});
 
-	it('Shoudl dispatch action and get data correctly when fetch success', async () => {
+	it('Shoudl dispatch action and get data correctly while fetch success', async () => {
 		apiServices.getThreadDetail = () => Promise.resolve(fakeDetaDetaiThreadResponse);
 
 		const dispatch = vi.fn();
@@ -41,6 +42,23 @@ describe('Testing comment on thread action', () => {
 
 		expect(dispatch).toHaveBeenCalledWith(showLoading());
 		expect(dispatch).toHaveBeenCalledWith(getDetailThread(fakeDetaDetaiThreadResponse));
+		expect(dispatch).toHaveBeenCalledWith(hideLoading());
+	});
+
+	it('Shoudl dispatch action and throw an error while fetch failed', async () => {
+		apiServices.addComment = () => Promise.reject(fakeErrorResponse);
+
+		const dispatch = vi.fn();
+
+		await asyncGetDetailThread({ threadId: 1, content: '' })(dispatch);
+
+		expect(dispatch).toHaveBeenCalledWith(showLoading());
+		expect(dispatch).toHaveBeenCalledWith(
+			setErrorMessage({
+				message: fakeErrorResponse.message,
+				actionType: 'GET_DETAIL_THREAD',
+			})
+		);
 		expect(dispatch).toHaveBeenCalledWith(hideLoading());
 	});
 });
