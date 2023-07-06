@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal';
 import { AiOutlineClose } from 'react-icons/ai';
 
-ReactModal.setAppElement('#root');
+ReactModal.setAppElement('body');
 
 export default function Modal({ isOpenModal, setOpenModal, title, children }) {
 	return (

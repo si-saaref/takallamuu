@@ -561,3 +561,26 @@
 	font-weight: bold;
 	color: rgba(0, 0, 0, 0.6);
 }
+
+/* !LOGIN PAGE */
+.container-single.loginpage-content {
+	width: 768px;
+	background: white;
+	min-height: 100vh;
+	/* padding: 2rem; */
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 4rem 2rem;
+	gap: 40px;
+}
+
+.loginpage-header {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.form-container.loginpage {
+	width: 100%;
+}

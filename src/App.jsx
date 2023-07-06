@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import Loader from './components/molecules/Loader';
 import './App.css';
 import './styles/styles.css';
+import LoginPage from './pages/LoginPage';
 
 function App() {
 	const { isPreload, authUser, errorMessage } = useSelector((states) => states);
@@ -40,6 +41,7 @@ function App() {
 			<Loader />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
+				<Route path='/login' element={<LoginPage />} />
 				<Route path='/thread/:id' element={<DetailPage />} />
 				<Route path='/*' element={<NotFound />} />
 			</Routes>
