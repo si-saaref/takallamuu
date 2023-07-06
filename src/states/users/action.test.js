@@ -1,8 +1,8 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import apiServices from '../../utlis/apiServices';
-import { asyncGetAllUsers, asyncGetDetailThread, getAllUsers, getDetailThread } from './action';
 import { setErrorMessage } from '../error/action';
+import { asyncGetAllUsers, getAllUsers } from './action';
 
 const fakeDetaUsersResponse = [
 	{
@@ -45,17 +45,17 @@ describe('Testing comment on thread action', () => {
 	});
 
 	it('Shoudl dispatch action and throw an error while fetch failed', async () => {
-		apiServices.addComment = () => Promise.reject(fakeErrorResponse);
+		apiServices.getAllUsers = () => Promise.reject(fakeErrorResponse);
 
 		const dispatch = vi.fn();
 
-		await asyncGetDetailThread({ threadId: 1, content: '' })(dispatch);
+		await asyncGetAllUsers()(dispatch);
 
 		expect(dispatch).toHaveBeenCalledWith(showLoading());
 		expect(dispatch).toHaveBeenCalledWith(
 			setErrorMessage({
 				message: fakeErrorResponse.message,
-				actionType: 'GET_DETAIL_THREAD',
+				actionType: 'GET_ALL_USERS',
 			})
 		);
 		expect(dispatch).toHaveBeenCalledWith(hideLoading());
