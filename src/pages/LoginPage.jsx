@@ -1,10 +1,28 @@
 import { Link } from 'react-router-dom';
 import Header from '../components/organisms/Header';
 import useInput from '../hooks/useInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncSetLogin } from '../states/authUser/action';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
 
 export default function LoginPage() {
 	const [email, handleChangeEmail] = useInput('');
 	const [password, handleChangePassword] = useInput('');
+	const dispatch = useDispatch();
+	const { authUser } = useSelector((states) => states);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (authUser !== null) {
+			navigate('/');
+		}
+	}, [authUser]);
+
+	const handleLogin = ({ email, password }) => {
+		dispatch(asyncSetLogin({ email, password }));
+	};
+
 	return (
 		<>
 			<Header />
