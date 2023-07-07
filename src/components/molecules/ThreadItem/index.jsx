@@ -1,4 +1,3 @@
-// import { isHTML } from '../utils/utlis';
 import { ImReply } from 'react-icons/im';
 import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
 import { FaLink } from 'react-icons/fa';

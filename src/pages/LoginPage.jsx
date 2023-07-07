@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import Header from '../components/organisms/Header';
-import useInput from '../hooks/useInput';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncSetLogin } from '../states/authUser/action';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
+import Header from '../components/organisms/Header';
+import useInput from '../hooks/useInput';
+import { asyncSetLogin } from '../states/authUser/action';
 
 export default function LoginPage() {
 	const { value: email, handleChangeValue: handleChangeEmail } = useInput('');
@@ -19,8 +19,9 @@ export default function LoginPage() {
 		}
 	}, [authUser]);
 
-	const handleLogin = ({ email, password }) => {
-		dispatch(asyncSetLogin({ email, password }));
+	const handleLogin = (data) => {
+		const { _email, _password } = data;
+		dispatch(asyncSetLogin({ email: _email, password: _password }));
 	};
 
 	return (

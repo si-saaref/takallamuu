@@ -1,9 +1,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import FormComment from './index';
 import userEvent from '@testing-library/user-event';
 import matchers from '@testing-library/jest-dom/matchers';
 import { renderHook } from '@testing-library/react-hooks';
+import FormComment from './index';
 import useInput from '../../../hooks/useInput';
 
 expect.extend(matchers);
@@ -16,7 +16,7 @@ describe('Testing form comment on detail thread page', () => {
 	it('Should handle typing comment properly', async () => {
 		const handleReply = vi.fn();
 
-		render(<FormComment onReplyThread={handleReply} replyTo={'User'} />);
+		render(<FormComment onReplyThread={handleReply} replyTo='User' />);
 
 		const commentInput = screen.getByPlaceholderText('Comment here');
 
@@ -29,7 +29,7 @@ describe('Testing form comment on detail thread page', () => {
 		const handleReply = vi.fn();
 
 		const { result } = renderHook(() => useInput(''));
-		render(<FormComment onReplyThread={handleReply} replyTo={'User'} />);
+		render(<FormComment onReplyThread={handleReply} replyTo='User' />);
 
 		const commentInput = screen.getByPlaceholderText('Comment here');
 		await userEvent.type(commentInput, 'testing-comment');

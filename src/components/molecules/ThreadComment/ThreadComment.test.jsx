@@ -1,15 +1,15 @@
-import { cleanup, prettyDOM, render, screen, within } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import ThreadComment from './index';
 
 // ! We have to import this if we want to use expect as it built by chai or jest assertion
 import matchers from '@testing-library/jest-dom/matchers';
 import userEvent from '@testing-library/user-event';
+import ThreadComment from './index';
+
 expect.extend(matchers);
 
 describe('Testing comment component', () => {
 	let thread;
-	let threadId;
 
 	beforeEach(() => {
 		thread = {
@@ -24,7 +24,6 @@ describe('Testing comment component', () => {
 			upVotesBy: [],
 			downVotesBy: [],
 		};
-		threadId = 'thread-Np47p4jhUXYhrhRn';
 	});
 
 	afterEach(() => {

@@ -1,11 +1,5 @@
 import parser from 'html-react-parser';
-import { BsSuitHeartFill, BsHeartbreakFill } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	asyncDislikeComment,
-	asyncLikeComment,
-	asyncNeutralComment,
-} from '../../../states/votes/action';
+import { BsHeartbreakFill, BsSuitHeartFill } from 'react-icons/bs';
 import { getDate } from '../../../utlis/utils';
 
 export default function ThreadComment({ thread, likeComment, dislikeComment, authUser }) {
