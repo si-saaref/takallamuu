@@ -1,3 +1,9 @@
+/**
+ * - Form Comment spec
+ *   - Should handle typing comment properly
+ *   - Should send comment when create comment button is clicked
+ */
+
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';

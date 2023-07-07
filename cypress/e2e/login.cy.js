@@ -1,3 +1,12 @@
+/**
+ * - Login spec
+ *   - Should show modal login correctly
+ *   - Should display alert when email is empty
+ *   - Should display alert when password is empty
+ *   - Should display alert when email and password are wrong
+ *   - Should display homepage when email and password are correct
+ */
+
 describe('Testing login flow', () => {
 	beforeEach(() => {
 		cy.viewport(1500, 768);
@@ -15,7 +24,7 @@ describe('Testing login flow', () => {
 		cy.get('input[placeholder="Password"]').should('be.visible');
 	});
 
-	it('should display alert when email is empty', () => {
+	it('Should display alert when email is empty', () => {
 		cy.get('[data-cy="modal-login-button"]')
 			.contains(/^Login$/)
 			.click();
@@ -23,7 +32,7 @@ describe('Testing login flow', () => {
 		cy.get('div').contains('"email" is not allowed to be empty');
 	});
 
-	it('should display alert when password is empty', () => {
+	it('Should display alert when password is empty', () => {
 		cy.get('input[placeholder="Email"]').type('rey.mbayang@gmail.com');
 
 		cy.get('[data-cy="modal-login-button"]')
@@ -33,7 +42,7 @@ describe('Testing login flow', () => {
 		cy.get('div').contains('"password" is not allowed to be empty');
 	});
 
-	it('should display alert when username and password are wrong', () => {
+	it('Should display alert when email and password are wrong', () => {
 		cy.get('input[placeholder="Email"]').type('wrong_email@gmail.com');
 
 		cy.get('input[placeholder="Password"]').type('wrong_password');
@@ -45,7 +54,7 @@ describe('Testing login flow', () => {
 		cy.get('div').contains('email or password is wrong');
 	});
 
-	it('should display homepage when username and password are correct', () => {
+	it('Should display homepage when email and password are correct', () => {
 		cy.get('input[placeholder="Email"]').type('rey.mbayang@gmail.com');
 
 		cy.get('input[placeholder="Password"]').type('123123123');

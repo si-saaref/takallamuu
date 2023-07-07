@@ -1,3 +1,10 @@
+/**
+ * - Form Comment spec
+ *   - Should show comment correctly
+ *   - Should click button like correctly
+ *   - Should click button unlike correctly
+ */
+
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
