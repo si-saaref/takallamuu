@@ -51,7 +51,7 @@ describe('Testing form comment on detail thread page', () => {
 
 		expect(handleReply).toHaveBeenLastCalledWith({
 			setValueComment: result.current.setValue,
-			content: 'testing-coamment',
+			content: 'testing-comment',
 		});
 	});
 });
