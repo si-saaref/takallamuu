@@ -16,7 +16,7 @@ export default function Modal({ isOpenModal, setOpenModal, title, children }) {
 			<div className='modal-container'>
 				<div className='modal__description'>
 					<p>{title}</p>
-					<AiOutlineClose onClick={() => setOpenModal(false)} />
+					<AiOutlineClose data-cy='close-modal' onClick={() => setOpenModal(false)} />
 				</div>
 				{children}
 			</div>

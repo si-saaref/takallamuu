@@ -18,4 +18,8 @@ export default defineConfig({
 		// },
 		// setupFiles: ['./tests/vitest.setup.ts'],
 	},
+	e2e: {
+		setupNodeEvents(on, config) {},
+		video: false,
+	},
 });

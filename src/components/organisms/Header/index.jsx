@@ -42,7 +42,12 @@ export default function Header({ isLarege = false }) {
 				{!authUser ? (
 					<div className='header__interactive-wrapper'>
 						<div className=''>
-							<button type='button' className='header__button' onClick={handleOpenLoginModal}>
+							<button
+								type='button'
+								data-cy='header-login-button'
+								className='header__button'
+								onClick={handleOpenLoginModal}
+							>
 								Login
 							</button>
 							<LoginModal

@@ -34,6 +34,7 @@ export default function LoginModal({ handleLogin, isOpenModal = false, setOpenMo
 					</div>
 					<button
 						type='button'
+						data-cy='modal-login-button'
 						className='form__button button-login'
 						onClick={() => handleLogin({ email, password })}
 					>
