@@ -76,6 +76,7 @@ export default function ThreadItem({ thread, isDetailPage = false }) {
 					<div className='thread__content__interactive-wrapper'>
 						<div className='thread__content__interactive__item'>
 							<BsSuitHeartFill
+								aria-label='like this thread'
 								onClick={() => handleLikeThread(thread.id)}
 								className={`button__interactive-item ${
 									thread.upVotesBy.includes(authUser?.id) && 'active-vote'
@@ -85,6 +86,7 @@ export default function ThreadItem({ thread, isDetailPage = false }) {
 						</div>
 						<div className='thread__content__interactive__item'>
 							<BsHeartbreakFill
+								aria-label='unlike this thread'
 								onClick={() => handleDislikeThread(thread.id)}
 								className={`button__interactive-item ${
 									thread.downVotesBy.includes(authUser?.id) && 'active-vote'
@@ -94,13 +96,18 @@ export default function ThreadItem({ thread, isDetailPage = false }) {
 						</div>
 						<div className='thread__content__interactive__item'>
 							<ImReply
+								aria-label='comment this thread'
 								className='button__interactive-item'
 								onClick={() => navigate(`/thread/${thread.id}`)}
 							/>
 							<p>{thread.totalComments ?? thread.comments.length}</p>
 						</div>
 						<div className='thread__content__interactive__item'>
-							<FaLink className='button__interactive-item' onClick={handleCopyLinkThread} />
+							<FaLink
+								aria-label='copy link this thread'
+								className='button__interactive-item'
+								onClick={handleCopyLinkThread}
+							/>
 						</div>
 					</div>
 					<TagItem title={thread.category} clickable={false} />

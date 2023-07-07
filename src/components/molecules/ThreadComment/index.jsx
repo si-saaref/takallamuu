@@ -8,26 +8,7 @@ import {
 } from '../../../states/votes/action';
 import { getDate } from '../../../utlis/utils';
 
-export default function ThreadComment({ thread, threadId }) {
-	const { authUser } = useSelector((states) => states);
-	const dispatch = useDispatch();
-
-	const likeComment = (commentId) => {
-		if (thread.upVotesBy.includes(authUser?.id)) {
-			dispatch(asyncNeutralComment({ commentId, threadId }));
-		} else {
-			dispatch(asyncLikeComment({ commentId, threadId }));
-		}
-	};
-
-	const dislikeComment = (commentId) => {
-		if (thread.downVotesBy.includes(authUser?.id)) {
-			dispatch(asyncNeutralComment({ commentId, threadId }));
-		} else {
-			dispatch(asyncDislikeComment({ commentId, threadId }));
-		}
-	};
-
+export default function ThreadComment({ thread, likeComment, dislikeComment, authUser }) {
 	return (
 		<div className='thread-comment'>
 			<div className='comment__profile-picture'>
@@ -36,29 +17,33 @@ export default function ThreadComment({ thread, threadId }) {
 			<div className='comment__content'>
 				<div className='comment__content-section-top'>
 					<div className='comment__content-info'>
-						<p>{thread.owner.name}</p>
+						<p data-testid='username-content'>{thread.owner.name}</p>
 						<p className='comment__content__date'>{getDate(thread.createdAt)}</p>
 					</div>
-					<h1>{parser(thread.content)}</h1>
+					<h1 data-testid='body-content'>{parser(thread.content)}</h1>
 				</div>
 				<div className='comment__content-section-bottom'>
 					<div className='comment__content__interactive__item'>
 						<BsSuitHeartFill
+							aria-label='like this comment'
+							data-testid='like-comment-button'
 							onClick={() => likeComment(thread.id)}
 							className={`button__interactive-item ${
 								thread.upVotesBy.includes(authUser?.id) && 'active-vote'
 							}`}
 						/>
-						<p>{thread.upVotesBy.length}</p>
+						<p data-testid='total-like-comment'>{thread.upVotesBy.length}</p>
 					</div>
 					<div className='comment__content__interactive__item'>
 						<BsHeartbreakFill
+							aria-label='unlike this comment'
+							data-testid='unlike-comment-button'
 							onClick={() => dislikeComment(thread.id)}
 							className={`button__interactive-item ${
 								thread.downVotesBy.includes(authUser?.id) && 'active-vote'
 							}`}
 						/>
-						<p>{thread.downVotesBy.length}</p>
+						<p data-testid='total-unlike-comment'>{thread.downVotesBy.length}</p>
 					</div>
 				</div>
 			</div>
