@@ -59,6 +59,7 @@ export default function Header({ isLarege = false }) {
 						<div className=''>
 							<button
 								type='button'
+								data-cy='header-register-button'
 								className='header__button button__register'
 								onClick={handleOpenRegisterModal}
 							>
@@ -72,7 +73,7 @@ export default function Header({ isLarege = false }) {
 						</div>
 					</div>
 				) : (
-					<RiLogoutBoxLine onClick={handleLogout} />
+					<RiLogoutBoxLine data-cy='header-logout-button' onClick={handleLogout} />
 				)}
 			</div>
 		</header>
