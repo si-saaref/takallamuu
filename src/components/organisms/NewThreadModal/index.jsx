@@ -8,9 +8,17 @@ export default function NewThreadModal({
 	handleAddThread,
 	listThreads,
 }) {
-	const [title, handleChangeTitle, setValueTitle] = useInput('');
-	const [tag, handleChangeTag, setValueTag] = useInput('');
-	const [content, handleChangeContent, setValueContent] = useInput('');
+	const {
+		value: title,
+		handleChangeValue: handleChangeTitle,
+		setValue: setValueTitle,
+	} = useInput('');
+	const { value: tag, handleChangeValue: handleChangeTag, setValue: setValueTag } = useInput('');
+	const {
+		value: content,
+		handleChangeValue: handleChangeContent,
+		setValue: setValueContent,
+	} = useInput('');
 
 	const resetValue = useCallback(() => {
 		setValueContent('');

@@ -7,8 +7,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom/dist/umd/react-router-dom.development';
 
 export default function LoginPage() {
-	const [email, handleChangeEmail] = useInput('');
-	const [password, handleChangePassword] = useInput('');
+	const { value: email, handleChangeValue: handleChangeEmail } = useInput('');
+	const { value: password, handleChangeValue: handleChangePassword } = useInput('');
 	const dispatch = useDispatch();
 	const { authUser } = useSelector((states) => states);
 	const navigate = useNavigate();

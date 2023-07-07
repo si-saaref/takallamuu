@@ -2,9 +2,9 @@ import useInput from '../../../hooks/useInput';
 import Modal from '../../molecules/Modal';
 
 export default function RegisterModal({ handleRegister, isOpenModal = false, setOpenModal }) {
-	const [name, handleChangeName] = useInput('');
-	const [email, handleChangeEmail] = useInput('');
-	const [password, handleChangePassword] = useInput('');
+	const { value: name, handleChangeValue: handleChangeName } = useInput('');
+	const { value: email, handleChangeValue: handleChangeEmail } = useInput('');
+	const { value: password, handleChangeValue: handleChangePassword } = useInput('');
 
 	return (
 		<Modal isOpenModal={isOpenModal} setOpenModal={setOpenModal} title='Register'>

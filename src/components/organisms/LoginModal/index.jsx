@@ -3,8 +3,8 @@ import useInput from '../../../hooks/useInput';
 import Modal from '../../molecules/Modal';
 
 export default function LoginModal({ handleLogin, isOpenModal = false, setOpenModal }) {
-	const [email, handleChangeEmail] = useInput('');
-	const [password, handleChangePassword] = useInput('');
+	const { value: email, handleChangeValue: handleChangeEmail } = useInput('');
+	const { value: password, handleChangeValue: handleChangePassword } = useInput('');
 
 	return (
 		<Modal isOpenModal={isOpenModal} setOpenModal={setOpenModal} title='Login'>

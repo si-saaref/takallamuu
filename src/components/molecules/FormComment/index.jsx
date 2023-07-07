@@ -18,7 +18,7 @@ export default function FormComment({ onReplyThread, replyTo }) {
 					onChange={handleChangeComment}
 					placeholder='Comment here'
 				/>
-				<button type='button' onClick={() => onReplyThread({ content: comment })}>
+				<button type='button' onClick={() => onReplyThread({ content: comment, setValueComment })}>
 					Reply
 				</button>
 			</form>
