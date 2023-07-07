@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import apiServices from '../../utlis/apiServices';
 import { setErrorMessage } from '../error/action';
 
@@ -10,128 +11,152 @@ export const actionType = {
 	NEUTRAL_COMMENT: 'NEUTRAL_COMMENT',
 };
 
-export const likeThread = (vote) => {
-	return {
-		type: actionType.LIKE_THREAD,
-		payload: {
-			vote,
-		},
-	};
-};
+export const likeThread = (vote) => ({
+	type: actionType.LIKE_THREAD,
+	payload: {
+		vote,
+	},
+});
 
-export const asyncLikeThread = ({ threadId }) => {
-	return async (dispatch) => {
+export const asyncLikeThread =
+	({ threadId }) =>
+	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.likeThread({ threadId });
 			dispatch(likeThread(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.LIKE_THREAD,
+				})
+			);
 		}
+		dispatch(hideLoading());
 	};
-};
 
-export const dislikeThread = (vote) => {
-	return {
-		type: actionType.DISLIKE_THREAD,
-		payload: {
-			vote,
-		},
-	};
-};
+export const dislikeThread = (vote) => ({
+	type: actionType.DISLIKE_THREAD,
+	payload: {
+		vote,
+	},
+});
 
-export const asyncDislikeThread = ({ threadId }) => {
-	return async (dispatch) => {
+export const asyncDislikeThread =
+	({ threadId }) =>
+	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.dislikeThread({ threadId });
 			dispatch(dislikeThread(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.DISLIKE_THREAD,
+				})
+			);
 		}
+		dispatch(hideLoading());
 	};
-};
 
-export const neutralThread = (vote) => {
-	return {
-		type: actionType.NEUTRAL_THREAD,
-		payload: {
-			vote,
-		},
-	};
-};
+export const neutralThread = (vote) => ({
+	type: actionType.NEUTRAL_THREAD,
+	payload: {
+		vote,
+	},
+});
 
-export const asyncNeutralThread = ({ threadId }) => {
-	return async (dispatch) => {
+export const asyncNeutralThread =
+	({ threadId }) =>
+	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.neutralThread({ threadId });
 			dispatch(neutralThread(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.NEUTRAL_THREAD,
+				})
+			);
 		}
+		dispatch(hideLoading());
 	};
-};
 
-export const likeComment = (vote) => {
-	return {
-		type: actionType.LIKE_COMMENT,
-		payload: {
-			vote,
-		},
-	};
-};
+export const likeComment = (vote) => ({
+	type: actionType.LIKE_COMMENT,
+	payload: {
+		vote,
+	},
+});
 
-export const asyncLikeComment = ({ threadId, commentId }) => {
-	return async (dispatch) => {
+export const asyncLikeComment =
+	({ threadId, commentId }) =>
+	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.likeComment({ threadId, commentId });
 			dispatch(likeComment(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.LIKE_COMMENT,
+				})
+			);
 		}
+		dispatch(hideLoading());
 	};
-};
 
-export const dislikeComment = (vote) => {
-	return {
-		type: actionType.DISLIKE_COMMENT,
-		payload: {
-			vote,
-		},
-	};
-};
+export const dislikeComment = (vote) => ({
+	type: actionType.DISLIKE_COMMENT,
+	payload: {
+		vote,
+	},
+});
 
-export const asyncDislikeComment = ({ threadId, commentId }) => {
-	return async (dispatch) => {
+export const asyncDislikeComment =
+	({ threadId, commentId }) =>
+	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.dislikeComment({ threadId, commentId });
 			dispatch(dislikeComment(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.DISLIKE_COMMENT,
+				})
+			);
 		}
+		dispatch(hideLoading());
 	};
-};
 
-export const neutralComment = (vote) => {
-	return {
-		type: actionType.NEUTRAL_COMMENT,
-		payload: {
-			vote,
-		},
-	};
-};
+export const neutralComment = (vote) => ({
+	type: actionType.NEUTRAL_COMMENT,
+	payload: {
+		vote,
+	},
+});
 
-export const asyncNeutralComment = ({ threadId, commentId }) => {
-	return async (dispatch) => {
+export const asyncNeutralComment =
+	({ threadId, commentId }) =>
+	async (dispatch) => {
+		dispatch(showLoading());
 		try {
 			const vote = await apiServices.neutralComment({ threadId, commentId });
 			dispatch(neutralComment(vote));
 		} catch (error) {
-			dispatch(setErrorMessage(error.message));
-			console.log(error.message);
+			dispatch(
+				setErrorMessage({
+					message: error.message,
+					actionType: actionType.NEUTRAL_COMMENT,
+				})
+			);
 		}
+		dispatch(hideLoading());
 	};
-};

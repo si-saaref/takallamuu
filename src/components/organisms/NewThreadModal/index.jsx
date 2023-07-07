@@ -1,10 +1,34 @@
-import useInput from '../../hooks/useInput';
-import Modal from '../molecules/Modal';
+import { useCallback, useEffect } from 'react';
+import useInput from '../../../hooks/useInput';
+import Modal from '../../molecules/Modal';
 
-export default function NewThreadModal({ isOpenModal = false, setOpenModal, handleAddThread }) {
-	const [title, handleChangeTitle] = useInput('');
-	const [tag, handleChangeTag] = useInput('');
-	const [content, handleChangeContent] = useInput('');
+export default function NewThreadModal({
+	isOpenModal = false,
+	setOpenModal,
+	handleAddThread,
+	listThreads,
+}) {
+	const {
+		value: title,
+		handleChangeValue: handleChangeTitle,
+		setValue: setValueTitle,
+	} = useInput('');
+	const { value: tag, handleChangeValue: handleChangeTag, setValue: setValueTag } = useInput('');
+	const {
+		value: content,
+		handleChangeValue: handleChangeContent,
+		setValue: setValueContent,
+	} = useInput('');
+
+	const resetValue = useCallback(() => {
+		setValueContent('');
+		setValueTag('');
+		setValueTitle('');
+	}, [setValueContent, setValueTitle, setValueTag]);
+
+	useEffect(() => {
+		resetValue();
+	}, [listThreads, resetValue]);
 
 	return (
 		<Modal isOpenModal={isOpenModal} setOpenModal={setOpenModal} title='New Thread'>
@@ -40,7 +64,7 @@ export default function NewThreadModal({ isOpenModal = false, setOpenModal, hand
 						rows='10'
 						value={content}
 						onChange={handleChangeContent}
-					></textarea>
+					/>
 					<button
 						type='button'
 						className='form__button button-login'

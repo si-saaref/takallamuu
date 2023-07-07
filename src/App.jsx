@@ -1,15 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import DetailPage from './pages/DetailPage';
-import HomePage from './pages/HomePage';
-import './styles/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { asyncSetIsPreload } from './states/isPreload/action';
 import { Toaster } from 'react-hot-toast';
-import NotFound from './pages/NotfOUND';
 import useNotification from './hooks/useNotification';
+import { asyncSetIsPreload } from './states/isPreload/action';
 import { setErrorMessage } from './states/error/action';
+import HomePage from './pages/HomePage';
+import DetailPage from './pages/DetailPage';
+import NotFound from './pages/NotFound';
+import Loader from './components/molecules/Loader';
+import './App.css';
+import './styles/styles.css';
+import LoginPage from './pages/LoginPage';
 
 function App() {
 	const { isPreload, authUser, errorMessage } = useSelector((states) => states);
@@ -22,7 +24,7 @@ function App() {
 
 	useEffect(() => {
 		if (errorMessage) {
-			notif.miniError(errorMessage);
+			notif.miniError(errorMessage.message);
 			dispatch(setErrorMessage(null));
 		}
 	}, [dispatch, notif, errorMessage]);
@@ -36,13 +38,13 @@ function App() {
 			<div>
 				<Toaster />
 			</div>
-			<main>
-				<Routes>
-					<Route path='/' element={<HomePage />} />
-					<Route path='/thread/:id' element={<DetailPage />} />
-					<Route path='/*' element={<NotFound />} />
-				</Routes>
-			</main>
+			<Loader />
+			<Routes>
+				<Route path='/' element={<HomePage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/thread/:id' element={<DetailPage />} />
+				<Route path='/*' element={<NotFound />} />
+			</Routes>
 		</>
 	);
 }

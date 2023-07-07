@@ -1,3 +1,10 @@
+/* ! LOADER */
+.loading {
+	position: sticky;
+	top: 0;
+	z-index: 99999;
+}
+
 /* ! HEADER */
 .header {
 	display: flex;
@@ -5,7 +12,7 @@
 	padding: 1rem;
 	background: #ffc26f;
 	position: sticky;
-	top: 0;
+	top: 0px;
 	z-index: 99;
 }
 
@@ -24,6 +31,11 @@
 
 .header__logo {
 	cursor: pointer;
+}
+
+.header__logo a {
+	color: black;
+	text-decoration: none;
 }
 
 .header-menu {
@@ -226,8 +238,18 @@
 	padding: 0.4rem 0;
 }
 
+.thread__content-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .thread__content__username {
 	font-size: 1.15rem;
+}
+
+.thread__content__date {
+	font-size: 0.9 rem;
 }
 
 .thread__content__title {
@@ -312,12 +334,23 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	flex: 1;
 }
 
 .comment__content-section-top {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+}
+
+.comment__content-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.comment__content__date {
+	font-size: 0.9rem;
 }
 
 .comment__content-section-top h1 {
@@ -527,4 +560,27 @@
 .homepage__leaderboard__head p {
 	font-weight: bold;
 	color: rgba(0, 0, 0, 0.6);
+}
+
+/* !LOGIN PAGE */
+.container-single.loginpage-content {
+	width: 768px;
+	background: white;
+	min-height: 100vh;
+	/* padding: 2rem; */
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 4rem 2rem;
+	gap: 40px;
+}
+
+.loginpage-header {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.form-container.loginpage {
+	width: 100%;
 }

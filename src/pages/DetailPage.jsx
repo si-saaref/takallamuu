@@ -8,6 +8,7 @@ import ThreadItem from '../components/molecules/ThreadItem';
 import Header from '../components/organisms/Header';
 import { asyncAddCommentThread } from '../states/comments/action';
 import { asyncGetDetailThread } from '../states/detailThread/action';
+import { asyncDislikeComment, asyncLikeComment, asyncNeutralComment } from '../states/votes/action';
 
 export default function DetailPage() {
 	const { id } = useParams();
@@ -27,6 +28,22 @@ export default function DetailPage() {
 
 	const handleBackPage = () => {
 		navigate('/');
+	};
+
+	const likeComment = (commentId) => {
+		if (detailThread.upVotesBy.includes(authUser?.id)) {
+			dispatch(asyncNeutralComment({ commentId, threadId: detailThread.id }));
+		} else {
+			dispatch(asyncLikeComment({ commentId, threadId: detailThread.id }));
+		}
+	};
+
+	const dislikeComment = (commentId) => {
+		if (detailThread.downVotesBy.includes(authUser?.id)) {
+			dispatch(asyncNeutralComment({ commentId, threadId: detailThread.id }));
+		} else {
+			dispatch(asyncDislikeComment({ commentId, threadId: detailThread.id }));
+		}
 	};
 
 	if (Object.keys(detailThread).length === 0) {
@@ -53,7 +70,13 @@ export default function DetailPage() {
 									Comments <span>({detailThread.comments.length})</span>
 								</h1>
 								{detailThread.comments.map((thread) => (
-									<ThreadComment key={thread.id} thread={thread} threadId={id} />
+									<ThreadComment
+										key={thread.id}
+										thread={thread}
+										likeComment={likeComment}
+										dislikeComment={dislikeComment}
+										authUser={authUser}
+									/>
 								))}
 							</div>
 						</div>
