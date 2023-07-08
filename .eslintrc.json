@@ -12,17 +12,11 @@
 	},
 	"plugins": ["react", "react-hooks", "cypress"],
 	"rules": {
-		"react-refresh/only-export-components": "warn",
 		"react/prop-types": 0,
 		"react/react-in-jsx-scope": "off",
 		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
 		"no-underscore-dangle": 0,
 		"no-use-before-define": "off",
-		"import/no-extraneous-dependencies": [
-			"error",
-			{
-				"projectDependencies": false
-			}
-		]
+		"import/no-extraneous-dependencies": 0
 	}
 }

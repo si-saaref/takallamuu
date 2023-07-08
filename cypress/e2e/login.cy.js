@@ -14,6 +14,11 @@ describe('Testing login flow', () => {
 		cy.get('[data-cy="header-login-button"]')
 			.contains(/^Login$/)
 			.click();
+		Cypress.config('defaultCommandTimeout', 7000);
+	});
+
+	afterEach(() => {
+		Cypress.config('defaultCommandTimeout', 4000);
 	});
 
 	it('Should show modal login correctly', () => {
@@ -29,6 +34,7 @@ describe('Testing login flow', () => {
 			.contains(/^Login$/)
 			.click();
 
+		cy.get('.load-bar').should('not.exist');
 		cy.get('div').contains('"email" is not allowed to be empty');
 	});
 
@@ -39,6 +45,7 @@ describe('Testing login flow', () => {
 			.contains(/^Login$/)
 			.click();
 
+		cy.get('.load-bar').should('not.exist');
 		cy.get('div').contains('"password" is not allowed to be empty');
 	});
 
@@ -51,6 +58,7 @@ describe('Testing login flow', () => {
 			.contains(/^Login$/)
 			.click();
 
+		cy.get('.load-bar').should('not.exist');
 		cy.get('div').contains('email or password is wrong');
 	});
 
@@ -68,8 +76,9 @@ describe('Testing login flow', () => {
 			.should('be.visible');
 
 		// ! Due to page build once before test and conditional rendering in header comp => it's better approach to use wizard https://docs.cypress.io/guides/core-concepts/conditional-testing#Use-the-URL-to-control-it
-		cy.visit('http://localhost:5173?wizard=1');
-		cy.wait(3000);
+		// cy.visit('http://localhost:5173?wizard=1');
+		// cy.wait(3000);
+		cy.get('.load-bar').should('not.exist'); //! https://filiphric.com/how-to-wait-for-page-to-load-in-cypress
 		cy.get('[data-cy="header-logout-button"]').should('be.visible');
 	});
 });

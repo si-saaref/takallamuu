@@ -27,4 +27,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Integratation Test Apps
-        run: yarn test
+        run: yarn ci:test

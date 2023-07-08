@@ -5,6 +5,12 @@
 	z-index: 99999;
 }
 
+.load-bar {
+	background: red;
+	position: absolute;
+	height: 5px;
+}
+
 /* ! HEADER */
 .header {
 	display: flex;
